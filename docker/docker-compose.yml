@@ -1,0 +1,95 @@
+# Avatour docker-compose
+#
+# Qdrant runs on HOST port 6334 (not 6333) to avoid conflicts with
+# other Qdrant instances. Inside Docker network it still uses 6333.
+# Connect from host machine: http://localhost:6334
+# Connect from other containers: http://qdrant:6333
+#
+# Document parsing uses the Unstructured Serverless API (no local container).
+# Set UNSTRUCTURED_API_KEY in .env before ingesting documents.
+#
+# Frontend is NOT included here — run it separately with: cd frontend && npm run dev
+#
+# To start only infra (Qdrant):
+#   docker compose -f docker/docker-compose.yml up qdrant -d
+#
+# To start everything:
+#   docker compose -f docker/docker-compose.yml up -d
+
+name: avatour
+
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: avatour-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: asa
+      POSTGRES_PASSWORD: asa
+      POSTGRES_DB: asa
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U asa"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  qdrant:
+    image: qdrant/qdrant:v1.9.2
+    container_name: avatour-qdrant
+    ports:
+      - "6334:6333"        # host 6334 → container 6333 (avoids conflict with other Qdrant on 6333)
+      - "6335:6334"        # gRPC port
+    volumes:
+      - qdrant_data:/qdrant/storage
+    environment:
+      QDRANT__SERVICE__GRPC_PORT: 6334
+    healthcheck:
+      test: ["CMD-SHELL", "bash -c 'exec 3<>/dev/tcp/127.0.0.1/6333'"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  backend:
+    build:
+      context: ../backend
+      dockerfile: Dockerfile
+    container_name: avatour-backend
+    ports:
+      - "8000:8000"
+    env_file:
+      - ../.env
+    environment:
+      - QDRANT_URL=http://qdrant:6333
+      - DATABASE_URL=postgresql+asyncpg://asa:asa@postgres:5432/avatour_db
+      - QDRANT_COLLECTION=avatour-docs
+    depends_on:
+      qdrant:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ../docs/sales-docs:/app/docs/sales-docs:ro
+    restart: unless-stopped
+
+  nginx:
+    image: nginx:alpine
+    container_name: avatour-nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  qdrant_data:
+    name: avatour-qdrant-data
+  postgres_data:
+    name: avatour-postgres-data
