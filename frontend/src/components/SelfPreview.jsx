@@ -2,7 +2,7 @@ import { useEffect, useRef } from "react";
 import { User, VideoOff } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-export function SelfPreview({ stream, enabled, error, label = "You" }) {
+export function SelfPreview({ stream, enabled, error, label = "You", className }) {
   const videoRef = useRef(null);
 
   useEffect(() => {
@@ -18,7 +18,8 @@ export function SelfPreview({ stream, enabled, error, label = "You" }) {
         "w-[clamp(130px,22vw,220px)] aspect-video overflow-hidden",
         "rounded-xl border border-white/20 bg-[#3c4043] shadow-2xl",
         "transition-all duration-300 hover:scale-[1.03] hover:border-white/40 hover:shadow-blue-500/10",
-        !enabled && "opacity-90"
+        !enabled && "opacity-90",
+        className,
       )}
     >
       <video

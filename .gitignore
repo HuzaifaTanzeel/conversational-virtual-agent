@@ -53,5 +53,9 @@ Thumbs.db
 docs/sales-docs/*
 !docs/sales-docs/.gitkeep
 
+# Resort scraped images (local dev/testing only)
+docs/resort-assets/icmaldives/images/
+docs/resort-assets/icmaldives/manifest.csv
+
 # Docker volumes
 qdrant_storage/

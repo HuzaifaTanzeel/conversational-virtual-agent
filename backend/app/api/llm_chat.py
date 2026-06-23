@@ -33,8 +33,9 @@ TOOLS = [
         "function": {
             "name": "show_media",
             "description": (
-                "Display a photo, video, 360 tour, or floor plan to the customer. "
-                "Call this whenever the customer asks to see something visual about the property."
+                "Display a photo, video, 360 tour, or floor plan on the guest's screen. "
+                "Call whenever the customer asks to SEE something visual. "
+                "Never say the function name aloud — put guest-facing words only in speech."
             ),
             "parameters": {
                 "type": "object",
@@ -46,16 +47,44 @@ TOOLS = [
                     },
                     "room_name": {
                         "type": "string",
-                        "description": (
-                            "Name of the room or area e.g. dining_room, master_bedroom, "
-                            "lobby, pool_area, floor_plan_ground"
-                        ),
+                        "enum": [
+                            "overwater_pool_villa",
+                            "sunset_overwater_pool_villa",
+                            "one_bedroom_lagoon_pool_villa",
+                            "one_bedroom_sunset_lagoon_pool_villa",
+                            "one_bedroom_sunset_beach_pool_villa",
+                            "beach_pool_villa",
+                            "family_beach_pool_villa",
+                            "two_bedroom_family_lagoon_pool_villa",
+                            "two_bedroom_family_beach_pool_villa",
+                            "two_bedroom_overwater_pool_residence",
+                            "two_bedroom_beachfront_pool_residence",
+                            "three_bedroom_overwater_pool_residence",
+                            "three_bedroom_lagoon_pool_residence",
+                            "three_bedroom_royal_beachfront_pool_residence",
+                            "the_lighthouse",
+                            "fish_market",
+                            "cafe_umi",
+                            "the_collective",
+                            "the_retreat",
+                            "pool_bar",
+                            "sunset_bar",
+                            "wine_cellar",
+                            "avi_spa",
+                            "fitness_centre",
+                            "water_sports",
+                            "planet_trekkers",
+                            "teen_escapades",
+                            "resort_aerial",
+                            "resort_overview",
+                        ],
+                        "description": "Canonical area identifier",
                     },
                     "speech": {
                         "type": "string",
                         "description": (
-                            "What the avatar should say while showing this media. "
-                            "Keep it conversational and descriptive."
+                            "What the avatar says while showing media — natural sentences only, "
+                            "no tool names or JSON."
                         ),
                     },
                 },
@@ -205,19 +234,10 @@ async def chat_completions(request: Request):
                 args = json.loads(fn.arguments or "{}")
                 asset_type = args.get("asset_type", "")
                 room_name = args.get("room_name", "")
-                speech = args.get("speech", "")
 
                 async with AsyncSessionLocal() as db:
                     asset = await _resolve_media_asset(db, asset_type, room_name)
                     call_session = await _find_call_session(db, request)
-
-                    tool_result = {
-                        "asset_type": asset_type,
-                        "room_name": room_name,
-                        "asset_url": asset.asset_url if asset else "",
-                        "thumbnail_url": asset.thumbnail_url if asset else "",
-                        "asset_id": asset.id if asset else None,
-                    }
 
                     log = ToolCallLog(
                         call_session_id=call_session.id if call_session else None,
@@ -232,6 +252,9 @@ async def chat_completions(request: Request):
                     await db.commit()
 
                 tool_call_id = tool_call.id or f"call_{uuid.uuid4().hex[:8]}"
+                # Tool-call turn: emit tool_calls only. Do NOT stream speech or JSON as
+                # content — Tavus would read those aloud. The frontend handles speech
+                # via conversation.echo after conversation.tool_call fires.
                 yield _make_chunk(
                     role="assistant",
                     tool_calls=[
@@ -245,15 +268,6 @@ async def chat_completions(request: Request):
                             },
                         }
                     ],
-                )
-
-                # Stream the speech text so Tavus speaks while media displays
-                if speech:
-                    for i in range(0, len(speech), 12):
-                        yield _make_chunk(content=speech[i : i + 12])
-
-                yield _make_chunk(
-                    content=json.dumps(tool_result),
                     finish_reason="tool_calls",
                 )
                 yield "data: [DONE]\n\n"
