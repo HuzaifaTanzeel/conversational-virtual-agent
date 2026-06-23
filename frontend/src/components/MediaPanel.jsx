@@ -22,7 +22,11 @@ export function MediaPanel({ media }) {
       : parameters || {};
 
   const assetType = params.asset_type;
-  const assetUrl = params.asset_url;
+  const rawUrl = params.asset_url;
+  const assetUrl =
+    rawUrl && rawUrl.startsWith("/")
+      ? `${window.location.origin}${rawUrl}`
+      : rawUrl;
 
   if (!assetUrl) {
     return (

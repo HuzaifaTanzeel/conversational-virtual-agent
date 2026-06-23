@@ -31,7 +31,9 @@ export function AvatarStage({
   isAvatarSpeaking,
   isUserSpeaking,
   status,
+  variant = "full",
 }) {
+  const isPip = variant === "pip";
   const mountRef = useRef(null);
 
   useEffect(() => {
@@ -60,18 +62,27 @@ export function AvatarStage({
       {!videoElement && (
         <div className="absolute inset-0 z-0 flex flex-col items-center justify-center gap-4">
           <div className="relative">
-            <div className="h-24 w-24 rounded-full bg-gradient-to-br from-[#1a73e8]/30 to-[#8ab4f8]/20 flex items-center justify-center">
-              <Bot className="h-10 w-10 text-white/60" />
+            <div
+              className={cn(
+                "rounded-full bg-gradient-to-br from-[#1a73e8]/30 to-[#8ab4f8]/20 flex items-center justify-center",
+                isPip ? "h-12 w-12" : "h-24 w-24",
+              )}
+            >
+              <Bot className={cn("text-white/60", isPip ? "h-5 w-5" : "h-10 w-10")} />
             </div>
             {isConnected && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <Loader2 className="h-8 w-8 text-white/70 animate-spin" />
+                <Loader2
+                  className={cn("text-white/70 animate-spin", isPip ? "h-4 w-4" : "h-8 w-8")}
+                />
               </div>
             )}
           </div>
-          <p className="text-sm text-white/50 font-medium">
-            {isConnected ? "Loading avatar stream\u2026" : "Ready to join"}
-          </p>
+          {!isPip && (
+            <p className="text-sm text-white/50 font-medium">
+              {isConnected ? "Loading avatar stream\u2026" : "Ready to join"}
+            </p>
+          )}
         </div>
       )}
 
@@ -81,7 +92,10 @@ export function AvatarStage({
       {/* Speaking ring */}
       {isAvatarSpeaking && (
         <div
-          className="absolute inset-0 z-[2] pointer-events-none animate-speak-glow rounded-2xl"
+          className={cn(
+            "absolute inset-0 z-[2] pointer-events-none animate-speak-glow",
+            isPip ? "rounded-xl" : "rounded-2xl",
+          )}
           aria-hidden
         />
       )}
@@ -92,11 +106,21 @@ export function AvatarStage({
       )}
 
       {/* Participant badge — bottom left, Meet-style */}
-      <div className="absolute bottom-4 left-4 z-[4] flex items-center gap-2 pointer-events-none">
-        <span className="inline-flex items-center gap-2 rounded-lg bg-black/60 px-3 py-1.5 text-sm font-medium text-white backdrop-blur-sm">
-          <span className={cn("h-2 w-2 rounded-full shrink-0", dotClass)} />
+      <div
+        className={cn(
+          "absolute z-[4] flex items-center gap-2 pointer-events-none",
+          isPip ? "bottom-2 left-2" : "bottom-4 left-4",
+        )}
+      >
+        <span
+          className={cn(
+            "inline-flex items-center gap-1.5 rounded-lg bg-black/60 font-medium text-white backdrop-blur-sm",
+            isPip ? "px-2 py-1 text-[10px]" : "gap-2 px-3 py-1.5 text-sm",
+          )}
+        >
+          <span className={cn("rounded-full shrink-0", dotClass, isPip ? "h-1.5 w-1.5" : "h-2 w-2")} />
           AI Agent
-          {isConnected && (
+          {isConnected && !isPip && (
             <span className="text-white/60 text-xs font-normal">&middot; {statusLabel}</span>
           )}
         </span>

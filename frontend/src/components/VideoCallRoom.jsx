@@ -65,6 +65,8 @@ export function VideoCallRoom({
     }
   }, []);
 
+  const mediaActive = Boolean(currentMedia);
+
   return (
     <div className="relative flex h-[100dvh] flex-col overflow-hidden bg-[#202124] text-white">
       <header className="absolute top-0 left-0 right-0 z-20 flex items-center justify-between px-4 py-3 sm:px-6 bg-gradient-to-b from-black/50 to-transparent">
@@ -104,28 +106,57 @@ export function VideoCallRoom({
       </header>
 
       <div className="flex flex-1 min-h-0 pt-14">
-        {/* Avatar panel — 60% */}
-        <div className="relative flex flex-[0_0_60%] flex-col min-h-0 min-w-0">
+        {/* Main stage — full width */}
+        <div className="relative flex flex-1 flex-col min-h-0 min-w-0">
           <div
             ref={stageRef}
             className={cn(
-              "relative flex-1 min-h-0 m-2 sm:m-3 mb-0 overflow-hidden bg-[#3c4043]",
+              "relative flex-1 min-h-0 m-2 sm:m-3 mb-0 overflow-hidden",
+              mediaActive ? "bg-black" : "bg-[#3c4043]",
               transcriptOpen ? "rounded-t-2xl sm:rounded-2xl sm:mr-0" : "rounded-2xl",
               isFullscreen && "rounded-none m-0",
             )}
           >
-            <AvatarStage
-              videoElement={avatar.videoElement}
-              isConnected={avatar.isConnected}
-              isAvatarSpeaking={avatar.isAvatarSpeaking}
-              isUserSpeaking={avatar.isUserSpeaking}
-              status={avatar.status}
-            />
+            {/* Media layer — shown behind avatar when active */}
+            {mediaActive && (
+              <>
+                <div className="absolute inset-0 z-0">
+                  <MediaPanel media={currentMedia} />
+                </div>
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-44 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
+                <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-24 bg-gradient-to-b from-black/40 to-transparent" />
+              </>
+            )}
+
+            {/* Avatar — always rendered in same tree position; transitions between full and PiP via CSS */}
+            <div
+              className={cn(
+                "transition-all duration-500 ease-out",
+                mediaActive
+                  ? "absolute z-10 bottom-[5.5rem] left-3 sm:bottom-28 sm:left-5 w-[clamp(112px,16vw,220px)] aspect-[3/4] overflow-hidden rounded-xl border border-white/25 bg-[#3c4043] shadow-2xl"
+                  : "absolute inset-0 z-0",
+                mediaActive && avatar.isAvatarSpeaking && "ring-2 ring-blue-400/60 ring-offset-2 ring-offset-black/20",
+              )}
+            >
+              <AvatarStage
+                videoElement={avatar.videoElement}
+                isConnected={avatar.isConnected}
+                isAvatarSpeaking={avatar.isAvatarSpeaking}
+                isUserSpeaking={avatar.isUserSpeaking}
+                status={avatar.status}
+                variant={mediaActive ? "pip" : "full"}
+              />
+            </div>
+
             <SelfPreview
               stream={camera.stream}
               enabled={camera.enabled}
               error={camera.error}
               label={displayName || "You"}
+              className={cn(
+                mediaActive &&
+                  "!top-16 !right-3 !bottom-auto sm:!top-20 sm:!right-5 !w-[clamp(100px,14vw,180px)]",
+              )}
             />
 
             <CallControls
@@ -152,16 +183,6 @@ export function VideoCallRoom({
           </div>
         </div>
 
-        {/* Media panel — 40% (hidden on small screens when no media) */}
-        <div
-          className={cn(
-            "hidden sm:flex flex-[0_0_40%] min-h-0 m-2 sm:m-3 ml-0 overflow-hidden rounded-2xl border border-white/10",
-            !currentMedia && "opacity-90",
-          )}
-        >
-          <MediaPanel media={currentMedia} />
-        </div>
-
         {transcriptOpen && (
           <TranscriptPanel
             status={avatar.status}
@@ -176,12 +197,6 @@ export function VideoCallRoom({
           />
         )}
       </div>
-
-      {currentMedia && (
-        <div className="sm:hidden flex flex-col max-h-[35vh] border-t border-white/10 bg-[#292a2d]">
-          <MediaPanel media={currentMedia} />
-        </div>
-      )}
 
       {transcriptOpen && (
         <div className="lg:hidden sm:flex hidden flex-col max-h-[40vh] border-t border-white/10 bg-[#292a2d] animate-in slide-in-from-bottom-4 duration-300">

@@ -146,7 +146,7 @@ export function useTavus(callToken, { onMediaEvent } = {}) {
               message_type: "conversation",
               event_type: "conversation.echo",
               conversation_id: data.conversation_id,
-              properties: { modality: "text", text: speech },
+              properties: { modality: "text", text: speech, done: true },
             },
             "*",
           );
