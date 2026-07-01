@@ -16,6 +16,7 @@ import { ConversationsPage } from "./pages/admin/ConversationsPage.jsx";
 import { MeetingsPage } from "./pages/admin/MeetingsPage.jsx";
 import { AuditLogPage } from "./pages/admin/AuditLogPage.jsx";
 import { ChangePasswordPage } from "./pages/admin/ChangePasswordPage.jsx";
+import { SceneDebugPage } from "./pages/dev/SceneDebugPage.jsx";
 
 function RequireAdmin({ children }) {
   const { user, loading } = useAdminAuth();
@@ -37,6 +38,8 @@ export default function App() {
         <Route path="/" element={<PublicHome />} />
         <Route path="/call" element={<PublicCall />} />
         <Route path="/call/join/:inviteId" element={<PublicCall />} />
+        {/* DEV ONLY — remove route + SceneDebugPage.jsx when mapping QA is done */}
+        <Route path="/dev/scenes" element={<SceneDebugPage />} />
 
         <Route path="/admin/login" element={<AdminLogin />} />
         <Route

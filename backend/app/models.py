@@ -231,6 +231,9 @@ class MediaAsset(Base):
     thumbnail_url: Mapped[str] = mapped_column(Text, default="", nullable=False)
     tags: Mapped[str] = mapped_column(Text, default="", nullable=False)
     sort_order: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
+    # Static images are retired in favour of the live 360 tour. Rows and files
+    # are kept for possible future use, but inactive rows are never served.
+    is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now(), nullable=False
     )

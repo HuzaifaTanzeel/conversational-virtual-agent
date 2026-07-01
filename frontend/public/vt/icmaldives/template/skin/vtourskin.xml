@@ -1,0 +1,158 @@
+<krpano>
+	<!--
+		Unencrypted replacement for Gecko's encrypted vtourskin.xml.
+
+		The original Gecko skin is krpano-"encrypted" and license/domain-locked to
+		geckodigital.co, so the krpano engine cannot decrypt it when the tour is
+		served from our own origin and aborts with "vtourskin.xml - XML parsing
+		failed". The encrypted original is preserved as
+		vtourskin.gecko-encrypted.xml.bak.
+
+		This plain-text skin restores what the tour needs:
+		  - skin_settings:    view defaults + layout vars referenced by scenes.xml
+		                      and tour.xml's (hidden) menu.
+		  - skin_hotspotstyle: branded scene-to-scene navigation hotspots.
+		  - skin_logo:        resort logo (bottom-right).
+		  - skin_loading:     zoom-in loading indicator during scene transitions.
+		  - autorotate:       gentle slow pan on every scene landing.
+	-->
+
+	<action name="startup" autorun="onstart">
+		if(startscene === null OR startscene == '' OR scene[get(startscene)] === null,
+			copy(startscene, scene[0].name);
+		);
+		loadscene(get(startscene), null, MERGE, BLEND(0.5));
+	</action>
+
+	<skin_settings
+		maps="false"
+		gyro="true"
+		webvr="false"
+		littleplanetintro="false"
+
+		my_fov="120"
+		my_fovmin="70"
+		my_fovmax="140"
+		my_fovtype="MFOV"
+
+		controlbar_height="40"
+		controlbar_offset="20"
+
+		design_bgcolor="0x000000"
+		design_bgalpha="0.6"
+		design_bgborder="0"
+		design_bgroundedge="6"
+		design_bgshadow="0 0 8 0x000000 0.4"
+
+		layout_width="100%"
+		layout_maxwidth="814"
+		design_logo_width="200"
+		hotspot_scale="0.5"
+
+		autorotate_speed="1.2"
+		autorotate_accel="0.35"
+		autorotate_waittime="0.4"
+		autorotate_resume="2.5"
+		/>
+
+	<!--
+		Slow horizontal pan after landing on any scene. krpano pauses on guest
+		drag/zoom and resumes automatically after waittime seconds of idle.
+	-->
+	<autorotate
+		enabled="false"
+		speed="2.0"
+		accel="0.35"
+		waittime="2.5"
+		horizon="0.0"
+		/>
+
+	<!-- Branded navigation hotspot (InterContinental "I" icon). -->
+	<style name="skin_hotspotstyle"
+		url="calc:path + 'skin/vtourskin_hotspot.png'"
+		enabled="true"
+		handcursor="true"
+		distorted="false"
+		zorder="2"
+		scale="0.5"
+		scale.mobile="0.75"
+		onover="tween(scale, 0.6, 0.15);"
+		onout="tween(scale, 0.5, 0.15);"
+		onclick="skin_loadscene(get(linkedscene), 1);"
+		/>
+
+	<!-- Resort logo — bottom-right, persists across scenes. -->
+	<layer name="skin_logo" keep="true"
+		url="calc:path + 'skin/logo.png'"
+		align="rightbottom"
+		x="20"
+		y="20"
+		width.normal="200"
+		width.mobile="180"
+		height="prop"
+		zorder="50"
+		/>
+
+	<!-- Loading indicator — zooms from large to small ("out to in") on transition. -->
+	<layer name="skin_loading" keep="true"
+		url="calc:path + 'skin/loading.png'"
+		align="center"
+		width="72"
+		height="prop"
+		visible="false"
+		alpha="0"
+		scale="2.5"
+		zorder="100"
+		/>
+
+	<action name="skin_showloading">
+		stopdelayedcall(skin_loading_hide);
+		set(autorotate.enabled, false);
+		set(layer[skin_loading].active, true);
+		set(layer[skin_loading].visible, true);
+		set(layer[skin_loading].alpha, 0);
+		set(layer[skin_loading].scale, 2.5);
+		tween(layer[skin_loading].alpha, 1.0, 0.35, default);
+		tween(layer[skin_loading].scale, 0.85, 0.45, easeOutQuad);
+	</action>
+
+	<action name="skin_start_autorotate">
+		copy(autorotate.horizon, view.vlookat);
+		set(autorotate.enabled, true);
+	</action>
+
+	<action name="skin_hideloading">
+		if(layer[skin_loading].active,
+			stopdelayedcall(skin_loading_hide);
+			tween(layer[skin_loading].alpha, 0, 0.25, easeInQuad);
+			tween(layer[skin_loading].scale, 0.35, 0.25, easeInQuad,
+				set(layer[skin_loading].visible, false);
+				set(layer[skin_loading].active, false);
+			);
+		);
+		jscall(window.__krpanoNavSync());
+	</action>
+
+	<action name="skin_hideloading_after_blend">
+		if(layer[skin_loading].active,
+			delayedcall(skin_loading_hide, get(skin_blend_time), skin_hideloading());
+		);
+	</action>
+
+	<action name="skin_loadscene" scope="local" args="scenename, blendtime">
+		copy(skin_blend_time, blendtime);
+		skin_showloading();
+		loadscene(get(scenename), null, MERGE, BLEND(get(blendtime)));
+	</action>
+
+	<!-- Notify React sidemenu when guests click in-pano hotspots (not just agent nav). -->
+	<events name="avatour_nav_sync" keep="true"
+		onnewscene="jscall(window.__krpanoNavSync());"
+		onloadcomplete="jscall(window.__krpanoNavSync());"
+		/>
+
+	<events name="skin_loading_events" keep="true"
+		onloadcomplete="skin_hideloading_after_blend(); skin_start_autorotate();"
+		/>
+
+</krpano>

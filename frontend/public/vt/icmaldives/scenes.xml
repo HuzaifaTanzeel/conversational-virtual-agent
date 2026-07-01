@@ -1,0 +1,652 @@
+﻿<krpano version="1.19" title="Virtual Tour">
+<scene name="scene_Aerial_Lighthouse" title="Aerial / Lighthouse Beach" sidemenu="">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="-90" vlookat="13"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/Aerial_Lighthouse.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/Aerial_Lighthouse.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_Aerial_MainPool" ath="-154.75" atv="-5.11"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_TwoBedroomBeachfrontResidence_LivingRoom" ath="-128.75" atv="6.22"/>
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_BeachPoolVilla_Bedroom" ath="-111.55" atv="3.35"/>
+<hotspot style="skin_hotspotstyle" name="spot4" linkedscene="scene_Spa_TreatmentRoom" ath="-88.44" atv="4.53"/>
+<hotspot style="skin_hotspotstyle" name="spot5" linkedscene="scene_Lighthouse" ath="-34.84" atv="18.36"/>
+</scene>
+<scene name="scene_Aerial_Lagoon" title="Aerial / Lagoon" sidemenu="">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="-3" vlookat="13"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/Aerial_Lagoon.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/Aerial_Lagoon.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_RetreatSwimmingPool" ath="-26.31" atv="28.51"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_MainPool" ath="10" atv="0"/>
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_FishMarket" ath="28.93" atv="0.57"/>
+<hotspot style="skin_hotspotstyle" name="spot4" linkedscene="scene_TwoBedroomLagoonPoolVilla_BedroomTwo" ath="87.82" atv="2.68"/>
+<hotspot style="skin_hotspotstyle" name="spot5" linkedscene="scene_ThreeBedroomLagoonResidence_LivingRoom" ath="125.69" atv="0.21"/>
+<hotspot style="skin_hotspotstyle" name="spot6" linkedscene="scene_OverwaterVilla_Bedroom" ath="137.01" atv="-0.28"/>
+<hotspot style="skin_hotspotstyle" name="spot7" linkedscene="scene_OneBedroomLagoonPoolVilla_LivingRoom" ath="168.15" atv="1.19"/>
+</scene>
+<scene name="scene_Aerial_MainPool" title="Aerial / Main Pool" sidemenu="">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="130" vlookat="16"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/Aerial_MainPool.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/Aerial_MainPool.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_MainPool" ath="16.84" atv="21.77"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_Umi" ath="57.64" atv="7.13"/>
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_PlanetCheckers_Interior" ath="93.02" atv="3.69"/>
+<!--  		<hotspot style="skin_hotspotstyle" name="spot4" linkedscene="scene_Lighthouse" ath="123.63" atv="1.01"/>  -->
+<hotspot style="skin_hotspotstyle" name="spot5" linkedscene="scene_Aerial_Lighthouse" ath="146.10" atv="-11.28"/>
+<hotspot style="skin_hotspotstyle" name="spot6" linkedscene="scene_Aerial_SunsetBar" ath="-124.94" atv="-6.22"/>
+<hotspot style="skin_hotspotstyle" name="spot7" linkedscene="scene_FishMarket" ath="-93.62" atv="5.66"/>
+<hotspot style="skin_hotspotstyle" name="spot8" linkedscene="scene_RetreatSwimmingPool" ath="-43.21" atv="0.54"/>
+<hotspot style="skin_hotspotstyle" name="spot9" linkedscene="scene_BeachPoolVilla_Bedroom" ath="99.15" atv="-0.04"/>
+<hotspot style="skin_hotspotstyle" name="spot10" linkedscene="scene_OneBedroomBeachVilla_LivingRoom" ath="105.48" atv="0.01"/>
+<hotspot style="skin_hotspotstyle" name="spot11" linkedscene="scene_FamilyBeachVilla_MasterBedroom" ath="110.10" atv="-0.43"/>
+<hotspot style="skin_hotspotstyle" name="spot12" linkedscene="scene_TwoBedroomFamilyBeachPoolVilla_LivingRoom" ath="114.60" atv="-0.64"/>
+<hotspot style="skin_hotspotstyle" name="spot13" linkedscene="scene_ThreeBedroomRoyalBeachResidence_LivingRoom" ath="118.91" atv="-0.25"/>
+</scene>
+<scene name="scene_Aerial_ResortOverview" title="Aerial / Resort Overview" sidemenu="">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="60" vlookat="17"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/Aerial_SunsetBar.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/Aerial_SunsetBar.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_FishMarket" ath="31.15" atv="6.30"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_MainPool" ath="94.55" atv="3.71"/>
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_ThreeBedroomOverwaterVilla_LivingRoom" ath="-53.94" atv="-0.64"/>
+<hotspot style="skin_hotspotstyle" name="spot4" linkedscene="scene_TwoBedroomLagoonPoolVilla_BedroomTwo" ath="-25.73" atv="-0.83"/>
+<hotspot style="skin_hotspotstyle" name="spot5" linkedscene="scene_RetreatSwimmingPool" ath="16.46" atv="0.15"/>
+<hotspot style="skin_hotspotstyle" name="spot6" linkedscene="scene_TwoBedroomOverWaterVilla_LivingRoom" ath="-48.77" atv="-0.29"/>
+<hotspot style="skin_hotspotstyle" name="spot7" linkedscene="scene_OverwaterVilla_Bedroom" ath="-42.16" atv="-0.44"/>
+</scene>
+<scene name="scene_Aerial_SunsetBar" title="Aerial / Sunset Bar" sidemenu="">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="60" vlookat="17"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/Aerial_SunsetBar.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/Aerial_SunsetBar.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_FishMarket" ath="31.15" atv="6.30"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_MainPool" ath="94.55" atv="3.71"/>
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_ThreeBedroomOverwaterVilla_LivingRoom" ath="-53.94" atv="-0.64"/>
+<hotspot style="skin_hotspotstyle" name="spot4" linkedscene="scene_OneBedroomLagoonPoolVilla_LivingRoom" ath="-25.73" atv="-0.83"/>
+<hotspot style="skin_hotspotstyle" name="spot5" linkedscene="scene_RetreatSwimmingPool" ath="16.46" atv="0.15"/>
+<hotspot style="skin_hotspotstyle" name="spot6" linkedscene="scene_TwoBedroomOverWaterVilla_LivingRoom" ath="-48.77" atv="-0.29"/>
+<hotspot style="skin_hotspotstyle" name="spot7" linkedscene="scene_OverwaterVilla_Bedroom" ath="-42.16" atv="-0.44"/>
+</scene>
+<!--  
+	<scene name="scene_Aerial_ThreeBedOverwaterVilla" title="Aerial / Three Bed Overwater Villa" sidemenu="">
+		<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin"  fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" 
+		hlookat="0" vlookat="0"/>
+		<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/Aerial_ThreeBedOverwaterVilla.tiles/preview.jpg'" />
+		<image>
+			<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/Aerial_ThreeBedOverwaterVilla.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048" />
+		</image>		
+<!~~ 		<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_Aerial_Lagoon" ath="78.13" atv="-2.38"/> ~~>
+		<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_Aerial_MainPool" ath="89.95" atv="-2.21"/>
+		<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_ThreeBedroomLagoonResidence_MasterBedroom" ath="76.50" atv="12.41"/>
+		<hotspot style="skin_hotspotstyle" name="spot4" linkedscene="scene_ThreeBedroomLagoonResidence_TwinBedroom" ath="54.55" atv="18.38"/>
+		<hotspot style="skin_hotspotstyle" name="spot5" linkedscene="scene_ThreeBedroomLagoonResidence_LivingRoom" ath="75.72" atv="22.07"/>
+		<hotspot style="skin_hotspotstyle" name="spot6" linkedscene="scene_ThreeBedroomLagoonResidence_BedroomTwo" ath="95.77" atv="17.38"/>
+	</scene>
+  -->
+<scene name="scene_Aerial_ThreeBedOverwaterVilla" title="Aerial / Three Bedroom Overwater Pool Residence" sidemenu="lmenu8">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="72" vlookat="25"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/Aerial_ThreeBedOverwaterVilla.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/Aerial_ThreeBedOverwaterVilla.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<!--  		<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_Aerial_Lagoon" ath="78.13" atv="-2.38"/>  -->
+<!--  		<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_Aerial_MainPool" ath="89.95" atv="-2.21"/>  -->
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_ThreeBedroomOverwaterVilla_MasterBedroom" ath="76.50" atv="12.41"/>
+<hotspot style="skin_hotspotstyle" name="spot4" linkedscene="scene_ThreeBedroomOverwaterVilla_TwinBedroom" ath="54.55" atv="18.38"/>
+<hotspot style="skin_hotspotstyle" name="spot5" linkedscene="scene_ThreeBedroomOverwaterVilla_LivingRoom" ath="75.72" atv="22.07"/>
+<hotspot style="skin_hotspotstyle" name="spot6" linkedscene="scene_ThreeBedroomOverwaterVilla_BedroomTwo" ath="95.77" atv="17.38"/>
+</scene>
+<scene name="scene_MainPool" title="Main Pool" sidemenu="lmenu14">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/MainPool.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/MainPool.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_Umi" ath="-149.98" atv="-0.99"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_Aerial_MainPool" ath="-23.06" atv="-17.64"/>
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_Aerial_SunsetBar" ath="21.21" atv="-12.37"/>
+</scene>
+<scene name="scene_RetreatSwimmingPool" title="Retreat Pool" sidemenu="">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/RetreatSwimmingPool.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/RetreatSwimmingPool.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<!--  		<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_Aerial_Lagoon" ath="-1.70" atv="-23.20"/>  -->
+<!--  		<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_Aerial_ThreeBedOverwaterVilla" ath="-18.19" atv="-3.92"/>  -->
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_OneBedroomLagoonPoolVilla_LivingRoom" ath="4.88" atv="-2.50"/>
+<hotspot style="skin_hotspotstyle" name="spot4" linkedscene="scene_ThreeBedroomLagoonResidence_LivingRoom" ath="-30.38" atv="-0.71"/>
+<hotspot style="skin_hotspotstyle" name="spot5" linkedscene="scene_TwoBedroomLagoonPoolVilla_LivingRoom" ath="47.62" atv="-2.16"/>
+<hotspot style="skin_hotspotstyle" name="spot6" linkedscene="scene_Aerial_SunsetBar" ath="-97.07" atv="-30.75"/>
+</scene>
+<scene name="scene_FishMarket" title="Fish Market" sidemenu="">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/FishMarket.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/FishMarket.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_Aerial_SunsetBar" ath="-36.30" atv="-10.08"/>
+<!--  		<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_Aerial_Lagoon" ath="96.60" atv="-2.82"/>	  -->
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_RetreatSwimmingPool" ath="101.07" atv="-0.07"/>
+</scene>
+<scene name="scene_Lighthouse" title="Lighthouse / Interior" sidemenu="lmenu13">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/Lighthouse.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/Lighthouse.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_Aerial_Lighthouse" ath="11.41" atv="-3.52"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_Spa_RelaxationLounge" ath="93.23" atv="0.01"/>
+</scene>
+<scene name="scene_Umi" title="CafÃ© Umi / Dining Area" sidemenu="">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/Umi.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/Umi.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_MainPool" ath="147.95" atv="2.69"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_Aerial_ResortOverview" ath="57.26" atv="0.70"/>
+</scene>
+<scene name="scene_PlanetCheckers_Interior" title="Planet Trekkers / Indoor" sidemenu="lmenu9">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/PlanetCheckers_Interior.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/PlanetCheckers_Interior.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_PlanetCheckers_Exterior" ath="59.90" atv="-0.37"/>
+</scene>
+<scene name="scene_PlanetCheckers_Exterior" title="Planet Trekkers / Outdoor" sidemenu="lmenu9">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/PlanetCheckers_Exterior.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/PlanetCheckers_Exterior.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_PlanetCheckers_Interior" ath="-29.25" atv="-2.46"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_Umi" ath="164.91" atv="-1.12"/>
+</scene>
+<scene name="scene_Spa_RelaxationLounge" title="Avi Spa / Relaxation Lounge" sidemenu="lmenu10">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/Spa_RelaxationLounge.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/Spa_RelaxationLounge.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_Spa_TreatmentRoom" ath="178.85" atv="-10.89"/>
+</scene>
+<scene name="scene_Spa_TreatmentRoom" title="Avi Spa / Treatment Room" sidemenu="lmenu10">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/Spa_TreatmentRoom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/Spa_TreatmentRoom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_Aerial_Lighthouse" ath="56.34" atv="-3.89"/>
+</scene>
+<scene name="scene_BeachPoolVilla_Bedroom" title="Beach Pool Villa / Bedroom" sidemenu="lmenu16">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/BeachPoolVilla_Bedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/BeachPoolVilla_Bedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_Aerial_MainPool" ath="-58.71" atv="2.40"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_BeachPoolVilla_Bathroom" ath="4.49" atv="2.13"/>
+</scene>
+<scene name="scene_BeachPoolVilla_Bathroom" title="Beach Pool Villa / Bathroom" sidemenu="lmenu16">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/FamilyBeachVilla_Bathroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/FamilyBeachVilla_Bathroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_BeachPoolVilla_Bedroom" ath="125.40" atv="3.40"/>
+</scene>
+<scene name="scene_FamilyBeachVilla_MasterBedroom" title="Family Beach Pool Villa / Master Bedroom" sidemenu="lmenu0">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/FamilyBeachVilla_MasterBedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/FamilyBeachVilla_MasterBedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_FamilyBeachVilla_FamilyRoom" ath="-158.00" atv="2.22"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_Aerial_MainPool" ath="-59.00" atv="2.68"/>
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_FamilyBeachVilla_Bathroom" ath="7.52" atv="2.50"/>
+</scene>
+<scene name="scene_FamilyBeachVilla_Bathroom" title="Family Beach Pool Villa / Master Bathroom" sidemenu="lmenu0">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/FamilyBeachVilla_Bathroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/FamilyBeachVilla_Bathroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_FamilyBeachVilla_MasterBedroom" ath="125.40" atv="3.40"/>
+</scene>
+<scene name="scene_FamilyBeachVilla_FamilyRoom" title="Family Beach Pool Villa / Family Room" sidemenu="lmenu0">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/FamilyBeachVilla_FamilyRoom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/FamilyBeachVilla_FamilyRoom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_FamilyBeachVilla_MasterBedroom" ath="35.37" atv="4.67"/>
+</scene>
+<scene name="scene_OneBedroomBeachVilla_Bedroom" title="One Bedroom Beach Pool Villa / Bedroom" sidemenu="lmenu12">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/OneBedroomBeachVilla_Bedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/OneBedroomBeachVilla_Bedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_OneBedroomBeachVilla_LivingRoom" ath="1.18" atv="3.54"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_Aerial_MainPool" ath="104.63" atv="-17.54"/>
+</scene>
+<scene name="scene_OneBedroomBeachVilla_LivingRoom" title="One Bedroom Beach Pool Villa / Living Room" sidemenu="lmenu12">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/OneBedroomBeachVilla_LivingRoom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/OneBedroomBeachVilla_LivingRoom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_OneBedroomBeachVilla_Bedroom" ath="20.48" atv="0.82"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_PlanetCheckers_Interior" ath="37.00" atv="1.72"/>
+</scene>
+<scene name="scene_ThreeBedroomRoyalBeachResidence_MasterLivingRoom" title="Three Bedroom Royal Beachfront Residence / Master Living Room" sidemenu="lmenu1">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomRoyalBeachResidence_MasterLivingRoom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomRoyalBeachResidence_MasterLivingRoom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomRoyalBeachResidence_MasterBedroom" ath="-135.99" atv="-4.08"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_ThreeBedroomRoyalBeachResidence_PoolDeck" ath="-23.67" atv="0.04"/>
+</scene>
+<scene name="scene_ThreeBedroomRoyalBeachResidence_LivingRoom" title="Three Bedroom Royal Beachfront Residence / Living Room" sidemenu="lmenu1">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomRoyalBeachResidence_LivingRoom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomRoyalBeachResidence_LivingRoom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomRoyalBeachResidence_PoolDeck" ath="131.50" atv="-0.99"/>
+</scene>
+<scene name="scene_ThreeBedroomRoyalBeachResidence_MasterBedroom" title="Three Bedroom Royal Beachfront Residence / Master Bedroom" sidemenu="lmenu1">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomRoyalBeachResidence_MasterBedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomRoyalBeachResidence_MasterBedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomRoyalBeachResidence_LivingRoom" ath="32.23" atv="-0.14"/>
+</scene>
+<scene name="scene_ThreeBedroomRoyalBeachResidence_TwinBedroom" title="Three Bedroom Royal Beachfront Residence / Second Bedroom" sidemenu="lmenu1">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomRoyalBeachResidence_TwinBedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomRoyalBeachResidence_TwinBedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomRoyalBeachResidence_PoolDeck" ath="65.28" atv="4.96"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_ThreeBedroomRoyalBeachResidence_BedroomThree" ath="173.55" atv="-0.96"/>
+</scene>
+<scene name="scene_ThreeBedroomRoyalBeachResidence_BedroomThree" title="Three Bedroom Royal Beachfront Residence / Third Bedroom" sidemenu="lmenu1">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomRoyalBeachResidence_BedroomThree.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomRoyalBeachResidence_BedroomThree.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomRoyalBeachResidence_PoolDeck" ath="-96.33" atv="2.75"/>
+</scene>
+<scene name="scene_ThreeBedroomRoyalBeachResidence_PoolDeck" title="Three Bedroom Royal Beachfront Residence / Pool Deck" sidemenu="lmenu1">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomRoyalBeachResidence_PoolDeck.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomRoyalBeachResidence_PoolDeck.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomRoyalBeachResidence_MasterBedroom" ath="160.87" atv="-43.03"/>
+<!--  		<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_ThreeBedroomRoyalBeachResidence_LivingRoom" ath="-149.38" atv="-31.94"/>  -->
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_Aerial_MainPool" ath="58.78" atv="-34.98"/>
+<hotspot style="skin_hotspotstyle" name="spot4" linkedscene="scene_ThreeBedroomRoyalBeachResidence_TwinBedroom" ath="50.84" atv="0.60"/>
+<hotspot style="skin_hotspotstyle" name="spot5" linkedscene="scene_ThreeBedroomRoyalBeachResidence_BedroomThree" ath="-59.06" atv="0.76"/>
+</scene>
+<scene name="scene_TwoBedroomBeachfrontResidence_LivingRoom" title="Two Bedroom Beachfront Pool Residence / Living Room" sidemenu="lmenu2">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomBeachfrontResidence_LivingRoom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomBeachfrontResidence_LivingRoom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_TwoBedroomBeachfrontResidence_MasterBedroom" ath="0" atv="0"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_TwoBedroomBeachfrontResidence_TwinBedroom" ath="10.55" atv="-4.14"/>
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_Lighthouse" ath="31.50" atv="2.00"/>
+<hotspot style="skin_hotspotstyle" name="spot4" linkedscene="scene_TwoBedroomBeachfrontResidence_PoolandLoungeDeck" ath="-92.95" atv="1.47"/>
+</scene>
+<scene name="scene_TwoBedroomBeachfrontResidence_MasterBedroom" title="Two Bedroom Beachfront Pool Residence / Master Bedroom" sidemenu="lmenu2">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomBeachfrontResidence_MasterBedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomBeachfrontResidence_MasterBedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_TwoBedroomBeachfrontResidence_MasterBathroom" ath="-159.45" atv="0.86"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_TwoBedroomBeachfrontResidence_LivingRoom" ath="13.09" atv="0.20"/>
+</scene>
+<scene name="scene_TwoBedroomBeachfrontResidence_MasterBathroom" title="Two Bedroom Beachfront Pool Residence / Master Bathroom" sidemenu="lmenu2">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomBeachfrontResidence_MasterBathroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomBeachfrontResidence_MasterBathroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_TwoBedroomBeachfrontResidence_MasterBedroom" ath="-48.97" atv="-1.16"/>
+</scene>
+<scene name="scene_TwoBedroomBeachfrontResidence_TwinBedroom" title="Two Bedroom Beachfront Pool Residence / Second Bedroom" sidemenu="lmenu2">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomBeachfrontResidence_TwinBedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomBeachfrontResidence_TwinBedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<!--  		<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_TwoBedroomBeachfrontResidence_TwinBathroom" ath="-99.04" atv="-0.56"/>  -->
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_TwoBedroomBeachfrontResidence_LivingRoom" ath="29.65" atv="-0.11"/>
+</scene>
+<scene name="scene_TwoBedroomBeachfrontResidence_TwinBathroom" title="Two Bedroom Beachfront Pool Residence / Second Bathroom" sidemenu="lmenu2">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomBeachfrontResidence_TwinBathroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomBeachfrontResidence_TwinBathroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_TwoBedroomBeachfrontResidence_TwinBedroom" ath="-86.92" atv="-0.33"/>
+</scene>
+<scene name="scene_TwoBedroomBeachfrontResidence_PoolandLoungeDeck" title="Two Bedroom Beachfront Pool Residence / Pool Deck" sidemenu="lmenu2">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomBeachfrontResidence_PoolandLoungeDeck.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomBeachfrontResidence_PoolandLoungeDeck.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_TwoBedroomBeachfrontResidence_TwinBedroom" ath="-152.49" atv="-14.36"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_TwoBedroomBeachfrontResidence_LivingRoom" ath="-64.42" atv="-2.89"/>
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_Aerial_Lighthouse" ath="-7.76" atv="-12.45"/>
+</scene>
+<scene name="scene_TwoBedroomFamilyBeachPoolVilla_LivingRoom" title="Two Bedroom Family Beach Pool Villa / Living Room" sidemenu="lmenu3">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomFamilyBeachPoolVilla_LivingRoom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomFamilyBeachPoolVilla_LivingRoom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_MainPool" ath="-37.14" atv="1.33"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_TwoBedroomFamilyBeachPoolVilla_Bedroom" ath="-16.57" atv="1.19"/>
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_Aerial_MainPool" ath="127.39" atv="-14.71"/>
+</scene>
+<scene name="scene_TwoBedroomFamilyBeachPoolVilla_Bedroom" title="Two Bedroom Family Beach Pool Villa / Master Bedroom" sidemenu="lmenu3">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomFamilyBeachPoolVilla_Bedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomFamilyBeachPoolVilla_Bedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_TwoBedroomFamilyBeachPoolVilla_FamilyBedroom" ath="69.87" atv="-0.60"/>
+</scene>
+<scene name="scene_TwoBedroomFamilyBeachPoolVilla_FamilyBedroom" title="Two Bedroom Family Beach Pool Villa / Second Bedroom" sidemenu="lmenu3">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomFamilyBeachPoolVilla_FamilyBedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomFamilyBeachPoolVilla_FamilyBedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_TwoBedroomFamilyBeachPoolVilla_LivingRoom" ath="171.05" atv="1.19"/>
+</scene>
+<scene name="scene_OneBedroomLagoonPoolVilla_LivingRoom" title="One Bedroom Lagoon Pool Villa (Sunrise / Sunset) / Living Room" sidemenu="lmenu4">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/OneBedroomLagoonPoolVilla_LivingRoom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/OneBedroomLagoonPoolVilla_LivingRoom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_RetreatSwimmingPool" ath="-92.51" atv="4.16"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_OneBedroomLagoonPoolVilla_Bedroom" ath="17.17" atv="-17.55"/>
+<!--  		<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_Aerial_Lagoon" ath="143.50" atv="-8.38"/>  -->
+</scene>
+<scene name="scene_OneBedroomLagoonPoolVilla_Bedroom" title="One Bedroom Lagoon Pool Villa (Sunrise / Sunset) / Bedroom" sidemenu="lmenu4">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/OneBedroomLagoonPoolVilla_Bedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/OneBedroomLagoonPoolVilla_Bedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_OneBedroomLagoonPoolVilla_Bathroom" ath="-77.47" atv="0.78"/>
+</scene>
+<scene name="scene_OneBedroomLagoonPoolVilla_Bathroom" title="One Bedroom Lagoon Pool Villa (Sunrise / Sunset) / Bathroom" sidemenu="lmenu4">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/OneBedroomLagoonPoolVilla_Bathroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/OneBedroomLagoonPoolVilla_Bathroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_OneBedroomLagoonPoolVilla_Bedroom" ath="110.59" atv="-0.35"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_OneBedroomLagoonPoolVilla_LivingRoom" ath="-150.18" atv="3.64"/>
+</scene>
+<scene name="scene_ThreeBedroomLagoonResidence_LivingRoom" title="Three Bedroom Lagoon Residence / Living Room" sidemenu="lmenu5">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_LivingRoom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_LivingRoom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomLagoonResidence_MasterBedroom" ath="76.86" atv="-0.00"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_ThreeBedroomLagoonResidence_PoolDeck" ath="118.16" atv="6.65"/>
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_ThreeBedroomLagoonResidence_DiningRoom" ath="-153.65" atv="1.27"/>
+<hotspot style="skin_hotspotstyle" name="spot4" linkedscene="scene_RetreatSwimmingPool" ath="-109.82" atv="1.54"/>
+</scene>
+<scene name="scene_ThreeBedroomLagoonResidence_MasterBedroom" title="Three Bedroom Lagoon Residence / Master Bedroom" sidemenu="lmenu5">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_MasterBedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_MasterBedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomLagoonResidence_PoolDeck" ath="-123.00" atv="2.44"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_ThreeBedroomLagoonResidence_MasterBathroom" ath="125.91" atv="0.95"/>
+</scene>
+<scene name="scene_ThreeBedroomLagoonResidence_MasterBathroom" title="Three Bedroom Lagoon Residence / Master Bathroom" sidemenu="lmenu5">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_MasterBathroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_MasterBathroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomLagoonResidence_MasterBedroom" ath="-117.71" atv="-2.66"/>
+</scene>
+<scene name="scene_ThreeBedroomLagoonResidence_TwinBedroom" title="Three Bedroom Lagoon Residence / Second Bedroom" sidemenu="lmenu5">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_TwinBedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_TwinBedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomLagoonResidence_DiningRoom" ath="-68.06" atv="0.70"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_ThreeBedroomLagoonResidence_TwinBathroom" ath="-150.01" atv="6.47"/>
+</scene>
+<scene name="scene_ThreeBedroomLagoonResidence_TwinBathroom" title="Three Bedroom Lagoon Residence / Second Bathroom" sidemenu="lmenu5">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_TwinBathroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_TwinBathroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomLagoonResidence_TwinBedroom" ath="-78.70" atv="-0.70"/>
+</scene>
+<scene name="scene_ThreeBedroomLagoonResidence_BedroomTwo" title="Three Bedroom Lagoon Residence / Third Bedroom" sidemenu="lmenu5">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_BedroomTwo.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_BedroomTwo.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomLagoonResidence_DiningRoom" ath="-81.98" atv="0.56"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_ThreeBedroomLagoonResidence_BathroomTwo" ath="-6.69" atv="7.09"/>
+</scene>
+<scene name="scene_ThreeBedroomLagoonResidence_BathroomTwo" title="Three Bedroom Lagoon Residence / Third Bathroom" sidemenu="lmenu5">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_BathroomTwo.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_BathroomTwo.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomLagoonResidence_TwinBedroom" ath="28.89" atv="1.53"/>
+</scene>
+<scene name="scene_ThreeBedroomLagoonResidence_DiningRoom" title="Three Bedroom Lagoon Residence / Dining Area" sidemenu="lmenu5">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_DiningRoom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_DiningRoom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomLagoonResidence_LivingRoom" ath="62.53" atv="1.82"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_ThreeBedroomLagoonResidence_TwinBedroom" ath="-26.14" atv="1.36"/>
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_ThreeBedroomLagoonResidence_PoolDeck" ath="139.46" atv="7.75"/>
+</scene>
+<scene name="scene_ThreeBedroomLagoonResidence_PoolDeck" title="Three Bedroom Lagoon Residence / Pool Deck" sidemenu="lmenu5">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_PoolDeck.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomLagoonResidence_PoolDeck.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomLagoonResidence_MasterBedroom" ath="-15.47" atv="-1.10"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_Aerial_Lighthouse" ath="6.13" atv="-10.49"/>
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_ThreeBedroomLagoonResidence_BedroomTwo" ath="-124.08" atv="-30.12"/>
+<hotspot style="skin_hotspotstyle" name="spot4" linkedscene="scene_ThreeBedroomLagoonResidence_DiningRoom" ath="-117.50" atv="2.00"/>
+<hotspot style="skin_hotspotstyle" name="spot5" linkedscene="scene_ThreeBedroomLagoonResidence_TwinBedroom" ath="-63.35" atv="-24.89"/>
+<hotspot style="skin_hotspotstyle" name="spot6" linkedscene="scene_ThreeBedroomLagoonResidence_LivingRoom" ath="-52.28" atv="0.24"/>
+<!--  		<hotspot style="skin_hotspotstyle" name="spot7" linkedscene="scene_Aerial_Lagoon" ath="175.07" atv="-45.22"/>  -->
+</scene>
+<scene name="scene_TwoBedroomLagoonPoolVilla_LivingRoom" title="Two Bedroom Family Lagoon Pool Villa / Living Room" sidemenu="lmenu11">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/OneBedroomLagoonPoolVilla_LivingRoom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/OneBedroomLagoonPoolVilla_LivingRoom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_RetreatSwimmingPool" ath="-92.51" atv="4.16"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_TwoBedroomLagoonPoolVilla_Bedroom" ath="17.17" atv="-17.55"/>
+<!--  		<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_Aerial_Lagoon" ath="143.50" atv="-8.38"/>  -->
+</scene>
+<scene name="scene_TwoBedroomLagoonPoolVilla_Bedroom" title="Two Bedroom Family Lagoon Pool Villa / Master Bedroom" sidemenu="lmenu11">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/OneBedroomLagoonPoolVilla_Bedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/OneBedroomLagoonPoolVilla_Bedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<!--  		<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_TwoBedroomLagoonPoolVilla_Bathroom" ath="-77.47" atv="0.78"/>  -->
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_TwoBedroomLagoonPoolVilla_BedroomTwo" ath="-91.94" atv="-1.91"/>
+</scene>
+<scene name="scene_TwoBedroomLagoonPoolVilla_Bathroom" title="Two Bedroom Family Lagoon Pool Villa / Master Bathroom" sidemenu="lmenu11">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/OneBedroomLagoonPoolVilla_Bathroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/OneBedroomLagoonPoolVilla_Bathroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_TwoBedroomLagoonPoolVilla_Bedroom" ath="110.59" atv="-0.35"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_TwoBedroomLagoonPoolVilla_LivingRoom" ath="-150.18" atv="3.64"/>
+</scene>
+<scene name="scene_TwoBedroomLagoonPoolVilla_BedroomTwo" title="Two Bedroom Family Lagoon Pool Villa / Second Bedroom" sidemenu="lmenu11">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomLagoonPoolVilla_BedroomTwo.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomLagoonPoolVilla_BedroomTwo.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_TwoBedroomLagoonPoolVilla_Bedroom" ath="61.15" atv="-1.28"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_TwoBedroomLagoonPoolVilla_LivingRoom" ath="55.35" atv="28.93"/>
+</scene>
+<scene name="scene_OverwaterVilla_Bedroom" title="Overwater Pool Villa (Sunrise / Sunset) / Bedroom" sidemenu="lmenu6">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/OverwaterVilla_Bedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/OverwaterVilla_Bedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_Aerial_SunsetBar" ath="-27.90" atv="2.97"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_OverwaterVilla_Bathroom" ath="29.10" atv="2.42"/>
+</scene>
+<scene name="scene_OverwaterVilla_Bathroom" title="Overwater Pool Villa (Sunrise / Sunset) / Bathroom" sidemenu="lmenu6">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/OverwaterVilla_Bathroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/OverwaterVilla_Bathroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_OverwaterVilla_Bedroom" ath="-96.95" atv="2.26"/>
+</scene>
+<scene name="scene_TwoBedroomOverWaterVilla_LivingRoom" title="Two Bedroom Overwater Pool Villa / Living Room" sidemenu="lmenu7">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomOverWaterVilla_LivingRoom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomOverWaterVilla_LivingRoom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_Aerial_SunsetBar" ath="-26.66" atv="0.90"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_TwoBedroomOverWaterVilla_MasterBedroom" ath="19.38" atv="3.36"/>
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_TwoBedroomOverWaterVilla_TwinBedroom" ath="-150.39" atv="3.20"/>
+<!--  		<hotspot style="skin_hotspotstyle" name="spot4" linkedscene="scene_Aerial_ThreeBedOverwaterVilla" ath="120.45" atv="-10.57"/>  -->
+</scene>
+<scene name="scene_TwoBedroomOverWaterVilla_MasterBedroom" title="Two Bedroom Overwater Pool Villa / Master Bedroom" sidemenu="lmenu7">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomOverWaterVilla_MasterBedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomOverWaterVilla_MasterBedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_TwoBedroomOverWaterVilla_MasterBathroom" ath="17.97" atv="2.30"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_TwoBedroomOverWaterVilla_LivingRoom" ath="-164.93" atv="0.32"/>
+</scene>
+<scene name="scene_TwoBedroomOverWaterVilla_MasterBathroom" title="Two Bedroom Overwater Pool Villa / Master Bathroom" sidemenu="lmenu7">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomOverWaterVilla_MasterBathroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomOverWaterVilla_MasterBathroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_TwoBedroomOverWaterVilla_MasterBedroom" ath="-141.25" atv="-1.38"/>
+</scene>
+<scene name="scene_TwoBedroomOverWaterVilla_TwinBedroom" title="Two Bedroom Overwater Pool Villa / Second Bedroom" sidemenu="lmenu7">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomOverWaterVilla_TwinBedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomOverWaterVilla_TwinBedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_TwoBedroomOverWaterVilla_TwinBathroom" ath="-166.33" atv="0.36"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_TwoBedroomOverWaterVilla_LivingRoom" ath="33.97" atv="-0.51"/>
+</scene>
+<scene name="scene_TwoBedroomOverWaterVilla_TwinBathroom" title="Two Bedroom Overwater Pool Villa / Second Bathroom" sidemenu="lmenu7">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomOverWaterVilla_TwinBathroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/TwoBedroomOverWaterVilla_TwinBathroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_TwoBedroomOverWaterVilla_TwinBedroom" ath="33.23" atv="0.11"/>
+</scene>
+<scene name="scene_ThreeBedroomOverwaterVilla_LivingRoom" title="Three Bedroom Overwater Pool Residence / Living Room" sidemenu="lmenu8">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomOverwaterVilla_LivingRoom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomOverwaterVilla_LivingRoom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomOverwaterVilla_BedroomTwo" ath="172.94" atv="-1.10"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_Aerial_ThreeBedOverwaterVilla" ath="-104.57" atv="-11.29"/>
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_ThreeBedroomOverwaterVilla_TwinBedroom" ath="-23.88" atv="2.14"/>
+<hotspot style="skin_hotspotstyle" name="spot4" linkedscene="scene_ThreeBedroomOverwaterVilla_MasterBedroom" ath="3.53" atv="-5.32"/>
+<hotspot style="skin_hotspotstyle" name="spot5" linkedscene="scene_Aerial_SunsetBar" ath="80.13" atv="3.92"/>
+</scene>
+<scene name="scene_ThreeBedroomOverwaterVilla_MasterBedroom" title="Three Bedroom Overwater Pool Residence / Master Bedroom" sidemenu="lmenu8">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomOverwaterVilla_MasterBedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomOverwaterVilla_MasterBedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_Aerial_ThreeBedOverwaterVilla" ath="98.42" atv="-4.94"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_ThreeBedroomOverwaterVilla_TwinBedroom" ath="-132.11" atv="1.87"/>
+</scene>
+<scene name="scene_ThreeBedroomOverwaterVilla_BedroomTwo" title="Three Bedroom Overwater Pool Residence / Third Bedroom" sidemenu="lmenu8">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomOverwaterVilla_BedroomTwo.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomOverwaterVilla_BedroomTwo.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomOverwaterVilla_BathroomTwo" ath="17.58" atv="2.35"/>
+<!--  		<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_Aerial_ThreeBedOverwaterVilla" ath="110.91" atv="-10.91"/>  -->
+<hotspot style="skin_hotspotstyle" name="spot3" linkedscene="scene_ThreeBedroomOverwaterVilla_LivingRoom" ath="-171.26" atv="2.17"/>
+</scene>
+<scene name="scene_ThreeBedroomOverwaterVilla_BathroomTwo" title="Three Bedroom Overwater Pool Residence / Third Bathroom" sidemenu="lmenu8">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomOverwaterVilla_BathroomTwo.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomOverwaterVilla_BathroomTwo.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomOverwaterVilla_BedroomTwo" ath="-165.96" atv="0.76"/>
+</scene>
+<scene name="scene_ThreeBedroomOverwaterVilla_TwinBedroom" title="Three Bedroom Overwater Pool Residence / Second Bedroom" sidemenu="lmenu8">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomOverwaterVilla_TwinBedroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomOverwaterVilla_TwinBedroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+<hotspot style="skin_hotspotstyle" name="spot1" linkedscene="scene_ThreeBedroomOverwaterVilla_TwinBathroom" ath="-172.83" atv="0.70"/>
+<hotspot style="skin_hotspotstyle" name="spot2" linkedscene="scene_ThreeBedroomOverwaterVilla_LivingRoom" ath="-4.86" atv="2.56"/>
+</scene>
+<scene name="scene_ThreeBedroomOverwaterVilla_TwinBathroom" title="Three Bedroom Overwater Pool Residence / Second Bathroom" sidemenu="lmenu8">
+<view limitview="range" maxpixelzoom="1.0" fovmin="get:skin_settings.my_fovmin" fovtype="get:skin_settings.my_fovtype" fovmax="get:skin_settings.my_fovmax" fov="get:skin_settings.my_fov" hlookat="0" vlookat="0"/>
+<preview url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomOverwaterVilla_TwinBathroom.tiles/preview.jpg'"/>
+<image>
+<cube url="calc:cdn_url + 'IntercontinentalMaldives/panos/ThreeBedroomOverwaterVilla_TwinBathroom.tiles/%s/l%l/%v/l%l_%s_%v_%h.jpg'" multires="512,1024,2048"/>
+</image>
+</scene>
+</krpano>

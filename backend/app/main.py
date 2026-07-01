@@ -20,6 +20,7 @@ from app.api.llm_chat import router as llm_chat_router
 from app.api.public import router as public_router
 from app.api.rag import router as rag_router
 from app.api.session import router as session_router
+from app.api.tools import router as tools_router
 from app.config import get_settings
 from app.db import engine
 from app.providers.llm import get_llm_provider
@@ -83,6 +84,7 @@ def create_app() -> FastAPI:
     app.include_router(admin_documents_router)
     app.include_router(admin_analytics_router)
     app.include_router(admin_meetings_router)
+    app.include_router(tools_router)
     # NOTE: Tavus calls POST /llm/chat as the custom LLM endpoint.
     # nginx rewrites /chat/completions → /llm/chat so Tavus's standard
     # OpenAI base_url convention resolves to our endpoint.

@@ -1,0 +1,171 @@
+<krpano showerrors="false" logkey="false" debugmode="false">
+<include url="calc:path + 'skin/vtourskin.xml'"/>
+<include url="calc:path + 'layout.xml'"/>
+<include url="scenes.xml"/>
+<!--  
+	<include url="videospot_editor.xml" />
+	<editor_settings step_rxy="0.1"
+                 step_rz="0.01"
+                 step_at="0.02"
+                 step_scale="0.001"
+                 step_scale_fine="0.0001"
+                 step_alpha="0.1"
+                 />
+  -->
+<!--  	<include url="calc:path + 'distortedhotspot_editor.xml'"/>  -->
+<!--  	<include url="onViewChange.xml"/>  -->
+<skin_settings design_logo_width.normal="200" design_logo_width.mobile="180" hotspot_scale=".5"/>
+<style name="skin_hotspotstyle" distorted="false"/>
+<layer name="skin_layer_menu" keep="true" type="container" align="top" width="get:skin_settings.layout_width" maxwidth="get:skin_settings.layout_maxwidth" height="100%" maskchildren="true" alpha="0" if="!noUI">
+<layer name="skin_menu_navi" type="container" align="bottom" x="0" y="0" width="0" height="calc:skin_settings.controlbar_height" bgcolor="get:skin_settings.design_bgcolor" bgalpha="get:skin_settings.design_bgalpha" bgborder="get:skin_settings.design_bgborder" bgroundedge="get:skin_settings.design_bgroundedge" bgshadow="get:skin_settings.design_bgshadow">
+<!--  	just for memo: 
+		onclick="load_scene(scene_)"  
+		&#x00A0; 	non-breakable space
+		&amp;		ampersand 		 -->
+<layer style="nav_menu_text" name="m0" html="AERIAL"/>
+<!--  			<layer style="nav_menu_text" name="m2" html="MAIN&#x00A0;AREAS"/>  -->
+<layer style="nav_menu_text" name="m1" html="ACCOMMODATION"/>
+<layer style="nav_menu_text" name="m3" html="DINING"/>
+<layer style="nav_menu_text" name="m4" html="FACILITIES"/>
+</layer>
+<!--  sub-menu  -->
+<layer name="sub_menu_mask" maskchildren="false" width="100%" height="400" x="0" y="calc:skin_settings.controlbar_offset + skin_settings.controlbar_height" align="leftbottom" keep="true" handcursor="false" type="container" zorder="15">
+<layer name="subm0" style="skin_submenu">
+<layer style="nav_submenu_text" name="m02" html="Lighthouse Beach" linkedscene="scene_Aerial_Lighthouse"/>
+<layer style="nav_submenu_text" name="m03" html="Main Pool" linkedscene="scene_Aerial_MainPool"/>
+<layer style="nav_submenu_text" name="m01" html="Lagoon" linkedscene="scene_Aerial_Lagoon"/>
+<layer style="nav_submenu_text" name="m04" html="Resort Overview" linkedscene="scene_Aerial_ResortOverview"/>
+<!--  				<layer style="nav_submenu_text" name="m05" html="Three Bed Overwater Villa"	linkedscene="scene_Aerial_ThreeBedOverwaterVilla"/>  -->
+</layer>
+<layer name="subm1" style="skin_submenu">
+<layer style="nav_submenu_text" name="m11" html="BEACH VILLAS" linkedscene=""/>
+<layer style="nav_submenu_text" name="m12" html="   Beach Pool Villa" linkedscene="scene_BeachPoolVilla_Bedroom"/>
+<layer style="nav_submenu_text" name="m13" html="   Family Beach Pool Villa" linkedscene="scene_FamilyBeachVilla_MasterBedroom"/>
+<layer style="nav_submenu_text" name="m14" html="   One Bedroom Beach Pool Villa" linkedscene="scene_OneBedroomBeachVilla_LivingRoom"/>
+<layer style="nav_submenu_text" name="m17" html="   Two Bedroom Family Beach Pool Villa" linkedscene="scene_TwoBedroomFamilyBeachPoolVilla_LivingRoom"/>
+<layer style="nav_submenu_text" name="m16" html="   Two Bedroom Beachfront Pool Residence" linkedscene="scene_TwoBedroomBeachfrontResidence_LivingRoom"/>
+<layer style="nav_submenu_text" name="m15" html="   Three Bedroom Royal Beachfront Residence" linkedscene="scene_ThreeBedroomRoyalBeachResidence_LivingRoom"/>
+<layer style="nav_submenu_text" name="m18" html="LAGOON VILLAS" linkedscene=""/>
+<layer style="nav_submenu_text" name="m19" html="   One Bedroom Lagoon Pool Villa (Sunrise / Sunset)" linkedscene="scene_OneBedroomLagoonPoolVilla_LivingRoom"/>
+<layer style="nav_submenu_text" name="m121" html="   Two Bedroom Family Lagoon Pool Villa" linkedscene="scene_TwoBedroomLagoonPoolVilla_LivingRoom"/>
+<layer style="nav_submenu_text" name="m120" html="   Three Bedroom Lagoon Residence" linkedscene="scene_ThreeBedroomLagoonResidence_LivingRoom"/>
+<layer style="nav_submenu_text" name="m122" html="OVERWATER VILLAS" linkedscene=""/>
+<layer style="nav_submenu_text" name="m123" html="   Overwater Pool Villa (Sunrise / Sunset)" linkedscene="scene_OverwaterVilla_Bedroom"/>
+<layer style="nav_submenu_text" name="m124" html="   Two Bedroom Overwater Pool Villa" linkedscene="scene_TwoBedroomOverWaterVilla_LivingRoom"/>
+<layer style="nav_submenu_text" name="m125" html="   Three Bedroom Overwater Pool Residence" linkedscene="scene_ThreeBedroomOverwaterVilla_LivingRoom"/>
+</layer>
+<layer name="subm2" style="skin_submenu">
+<layer style="nav_submenu_text" name="m21" html="Main Pool" linkedscene="scene_MainPool"/>
+<layer style="nav_submenu_text" name="m22" html="Retreat Swimming Pool" linkedscene="scene_RetreatSwimmingPool"/>
+</layer>
+<layer name="subm3" style="skin_submenu">
+<layer style="nav_submenu_text" name="m31" html="Fish Market" linkedscene="scene_FishMarket"/>
+<layer style="nav_submenu_text" name="m32" html="Lighthouse" linkedscene="scene_Lighthouse"/>
+<layer style="nav_submenu_text" name="m33" html="Café Umi" linkedscene="scene_Umi"/>
+<layer style="nav_submenu_text" name="m34" html="The Retreat" linkedscene="scene_RetreatSwimmingPool"/>
+<layer style="nav_submenu_text" name="m35" html="Sunset Bar" linkedscene="scene_Aerial_SunsetBar"/>
+</layer>
+<layer name="subm4" style="skin_submenu">
+<layer style="nav_submenu_text" name="m42" html="Planet Trekkers" linkedscene="scene_PlanetCheckers_Interior"/>
+<layer style="nav_submenu_text" name="m41" html="Main Pool" linkedscene="scene_MainPool"/>
+<layer style="nav_submenu_text" name="m43" html="Avi Spa" linkedscene="scene_Spa_RelaxationLounge"/>
+</layer>
+</layer>
+</layer>
+<layer style="l_menu_cont" name="lmenu0">
+<layer style="l_menu" name="lm01" html="MASTER BEDROOM" linkedscene="scene_FamilyBeachVilla_MasterBedroom"/>
+<layer style="l_menu" name="lm02" html="MASTER BATHROOM" linkedscene="scene_FamilyBeachVilla_Bathroom"/>
+<layer style="l_menu" name="lm03" html="FAMILY ROOM" linkedscene="scene_FamilyBeachVilla_FamilyRoom"/>
+</layer>
+<layer style="l_menu_cont" name="lmenu1">
+<!--  		<layer style="l_menu" name="lm11" html="MASTER LIVING ROOM"	linkedscene="scene_ThreeBedroomRoyalBeachResidence_MasterLivingRoom"/>  -->
+<layer style="l_menu" name="lm12" html="LIVING ROOM" linkedscene="scene_ThreeBedroomRoyalBeachResidence_LivingRoom"/>
+<layer style="l_menu" name="lm13" html="MASTER BEDROOM" linkedscene="scene_ThreeBedroomRoyalBeachResidence_MasterBedroom"/>
+<layer style="l_menu" name="lm14" html="SECOND BEDROOM" linkedscene="scene_ThreeBedroomRoyalBeachResidence_TwinBedroom"/>
+<layer style="l_menu" name="lm15" html="THIRD BEDROOM" linkedscene="scene_ThreeBedroomRoyalBeachResidence_BedroomThree"/>
+<layer style="l_menu" name="lm16" html="POOL DECK" linkedscene="scene_ThreeBedroomRoyalBeachResidence_PoolDeck"/>
+</layer>
+<layer style="l_menu_cont" name="lmenu2">
+<layer style="l_menu" name="lm21" html="LIVING ROOM" linkedscene="scene_TwoBedroomBeachfrontResidence_LivingRoom"/>
+<layer style="l_menu" name="lm22" html="MASTER BEDROOM" linkedscene="scene_TwoBedroomBeachfrontResidence_MasterBedroom"/>
+<layer style="l_menu" name="lm23" html="MASTER BATHROOM" linkedscene="scene_TwoBedroomBeachfrontResidence_MasterBathroom"/>
+<layer style="l_menu" name="lm24" html="SECOND BEDROOM" linkedscene="scene_TwoBedroomBeachfrontResidence_TwinBedroom"/>
+<!--  		<layer style="l_menu" name="lm25" html="SECOND BATHROOM"		linkedscene="scene_TwoBedroomBeachfrontResidence_TwinBathroom"/>  -->
+<layer style="l_menu" name="lm26" html="POOL DECK" linkedscene="scene_TwoBedroomBeachfrontResidence_PoolandLoungeDeck"/>
+</layer>
+<layer style="l_menu_cont" name="lmenu3">
+<layer style="l_menu" name="lm31" html="LIVING ROOM" linkedscene="scene_TwoBedroomFamilyBeachPoolVilla_LivingRoom"/>
+<layer style="l_menu" name="lm32" html="MASTER BEDROOM" linkedscene="scene_TwoBedroomFamilyBeachPoolVilla_Bedroom"/>
+<layer style="l_menu" name="lm33" html="SECOND BEDROOM" linkedscene="scene_TwoBedroomFamilyBeachPoolVilla_FamilyBedroom"/>
+</layer>
+<layer style="l_menu_cont" name="lmenu4">
+<layer style="l_menu" name="lm41" html="LIVING ROOM" linkedscene="scene_OneBedroomLagoonPoolVilla_LivingRoom"/>
+<layer style="l_menu" name="lm42" html="BEDROOM" linkedscene="scene_OneBedroomLagoonPoolVilla_Bedroom"/>
+<layer style="l_menu" name="lm43" html="BATHROOM" linkedscene="scene_OneBedroomLagoonPoolVilla_Bathroom"/>
+</layer>
+<layer style="l_menu_cont" name="lmenu5">
+<layer style="l_menu" name="lm51" html="LIVING ROOM" linkedscene="scene_ThreeBedroomLagoonResidence_LivingRoom"/>
+<layer style="l_menu" name="lm58" html="DINING AREA" linkedscene="scene_ThreeBedroomLagoonResidence_DiningRoom"/>
+<layer style="l_menu" name="lm52" html="MASTER BEDROOM" linkedscene="scene_ThreeBedroomLagoonResidence_MasterBedroom"/>
+<layer style="l_menu" name="lm53" html="MASTER BATHROOM" linkedscene="scene_ThreeBedroomLagoonResidence_MasterBathroom"/>
+<layer style="l_menu" name="lm54" html="SECOND BEDROOM" linkedscene="scene_ThreeBedroomLagoonResidence_TwinBedroom"/>
+<layer style="l_menu" name="lm55" html="SECOND BATHROOM" linkedscene="scene_ThreeBedroomLagoonResidence_TwinBathroom"/>
+<layer style="l_menu" name="lm56" html="THIRD BEDROOM" linkedscene="scene_ThreeBedroomLagoonResidence_BedroomTwo"/>
+<layer style="l_menu" name="lm57" html="THIRD BATHROOM" linkedscene="scene_ThreeBedroomLagoonResidence_BathroomTwo"/>
+<layer style="l_menu" name="lm59" html="POOL DECK" linkedscene="scene_ThreeBedroomLagoonResidence_PoolDeck"/>
+</layer>
+<layer style="l_menu_cont" name="lmenu6">
+<layer style="l_menu" name="lm61" html="BEDROOM" linkedscene="scene_OverwaterVilla_Bedroom"/>
+<layer style="l_menu" name="lm62" html="BATHROOM" linkedscene="scene_OverwaterVilla_Bathroom"/>
+</layer>
+<layer style="l_menu_cont" name="lmenu7">
+<layer style="l_menu" name="lm71" html="LIVING ROOM" linkedscene="scene_TwoBedroomOverWaterVilla_LivingRoom"/>
+<layer style="l_menu" name="lm72" html="MASTER BEDROOM" linkedscene="scene_TwoBedroomOverWaterVilla_MasterBedroom"/>
+<layer style="l_menu" name="lm73" html="MASTER BATHROOM" linkedscene="scene_TwoBedroomOverWaterVilla_MasterBathroom"/>
+<layer style="l_menu" name="lm74" html="SECOND BEDROOM" linkedscene="scene_TwoBedroomOverWaterVilla_TwinBedroom"/>
+<layer style="l_menu" name="lm75" html="SECOND BATHROOM" linkedscene="scene_TwoBedroomOverWaterVilla_TwinBathroom"/>
+</layer>
+<layer style="l_menu_cont" name="lmenu8">
+<layer style="l_menu" name="lm87" html="AERIAL" linkedscene="scene_Aerial_ThreeBedOverwaterVilla"/>
+<layer style="l_menu" name="lm81" html="LIVING ROOM" linkedscene="scene_ThreeBedroomOverwaterVilla_LivingRoom"/>
+<layer style="l_menu" name="lm82" html="MASTER BEDROOM" linkedscene="scene_ThreeBedroomOverwaterVilla_MasterBedroom"/>
+<layer style="l_menu" name="lm83" html="SECOND BEDROOM" linkedscene="scene_ThreeBedroomOverwaterVilla_TwinBedroom"/>
+<layer style="l_menu" name="lm84" html="SECOND BATHROOM" linkedscene="scene_ThreeBedroomOverwaterVilla_TwinBathroom"/>
+<layer style="l_menu" name="lm85" html="THIRD BEDROOM" linkedscene="scene_ThreeBedroomOverwaterVilla_BedroomTwo"/>
+<layer style="l_menu" name="lm86" html="THIRD BATHROOM" linkedscene="scene_ThreeBedroomOverwaterVilla_BathroomTwo"/>
+</layer>
+<layer style="l_menu_cont" name="lmenu9">
+<layer style="l_menu" name="lm91" html="INDOOR" linkedscene="scene_PlanetCheckers_Interior"/>
+<layer style="l_menu" name="lm92" html="OUTDOOR" linkedscene="scene_PlanetCheckers_Exterior"/>
+</layer>
+<layer style="l_menu_cont" name="lmenu10">
+<layer style="l_menu" name="lm101" html="RELAXATION LOUNGE" linkedscene="scene_Spa_RelaxationLounge"/>
+<layer style="l_menu" name="lm102" html="TREATMENT ROOM" linkedscene="scene_Spa_TreatmentRoom"/>
+</layer>
+<layer style="l_menu_cont" name="lmenu11">
+<layer style="l_menu" name="lm111" html="LIVING ROOM" linkedscene="scene_TwoBedroomLagoonPoolVilla_LivingRoom"/>
+<layer style="l_menu" name="lm112" html="MASTER BEDROOM" linkedscene="scene_TwoBedroomLagoonPoolVilla_Bedroom"/>
+<!--  		<layer style="l_menu" name="lm113" html="MASTER BATHROOM"	linkedscene="scene_TwoBedroomLagoonPoolVilla_Bathroom"/>  -->
+<layer style="l_menu" name="lm114" html="SECOND BEDROOM" linkedscene="scene_TwoBedroomLagoonPoolVilla_BedroomTwo"/>
+</layer>
+<layer style="l_menu_cont" name="lmenu12">
+<layer style="l_menu" name="lm121" html="LIVING ROOM" linkedscene="scene_OneBedroomBeachVilla_LivingRoom"/>
+<layer style="l_menu" name="lm122" html="BEDROOM" linkedscene="scene_OneBedroomBeachVilla_Bedroom"/>
+</layer>
+<layer style="l_menu_cont" name="lmenu13">
+<layer style="l_menu" name="lm131" html="INTERIOR" linkedscene="scene_Lighthouse"/>
+<layer style="l_menu" name="lm132" html="AERIAL LIGHTHOUSE" linkedscene="scene_Aerial_Lighthouse"/>
+</layer>
+<layer style="l_menu_cont" name="lmenu14">
+<layer style="l_menu" name="lm141" html="MAIN POOL" linkedscene="scene_MainPool"/>
+<layer style="l_menu" name="lm142" html="AERIAL MAIN POOL" linkedscene="scene_Aerial_MainPool"/>
+</layer>
+<layer style="l_menu_cont" name="lmenu15">
+<layer style="l_menu" name="lm151" html="AERIAL RETREAT" linkedscene="scene_Aerial_Lagoon"/>
+<layer style="l_menu" name="lm152" html="RETREAT POOL" linkedscene="scene_RetreatSwimmingPool"/>
+</layer>
+<layer style="l_menu_cont" name="lmenu16">
+<layer style="l_menu" name="lm161" html="BEDROOM" linkedscene="scene_BeachPoolVilla_Bedroom"/>
+<layer style="l_menu" name="lm162" html="BATHROOM" linkedscene="scene_BeachPoolVilla_Bathroom"/>
+</layer>
+</krpano>

@@ -74,6 +74,7 @@ class Settings(BaseSettings):
 
     # --- Tavus CVI ---
     tavus_api_key: str = ""
+    tavus_tool_secret: str = ""
     # NOTE: replica_id / persona_id / tavus_sandbox live in the DB (app_settings),
     # configurable from the admin portal. Env vars below are INITIAL SEED values only.
     tavus_replica_id: str = ""

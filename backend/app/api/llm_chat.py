@@ -20,79 +20,197 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.config import get_settings
 from app.db import AsyncSessionLocal
-from app.models import CallSession, MediaAsset, ToolCallLog
+from app.models import CallSession, ToolCallLog
 from app.providers.llm.base import Message
 from app.rag.retriever import Retriever
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/llm", tags=["llm"])
 
-TOOLS = [
-    {
+_NAVIGATE_SUFFIX = (
+    " Call this tool only when the guest asks to see or visit one of these "
+    "places, OR right after they agree to your offer to show it — do NOT "
+    "navigate just because you mention or list a place in passing. When you do "
+    "navigate, pick the exact enum value. Never mention tool names, enum "
+    "values, or JSON to the guest."
+)
+
+_SPEECH_PARAM = {
+    "type": "string",
+    "description": (
+        "Everything you say out loud after the tour moves to this area. Use two to "
+        "four short, simple sentences: briefly describe the place, tell the guest "
+        "they can look around the 360 view, then ask one question or offer the next "
+        "stop in your tour plan. This is your entire reply for this turn — include "
+        "the description, the explore invite, and the next-step question here. "
+        "Do not mention tool names, function calls, or JSON."
+    ),
+}
+
+
+def _nav_tool(name: str, description: str, enum_values: list[str], area_desc: str) -> dict:
+    return {
         "type": "function",
         "function": {
-            "name": "show_media",
-            "description": (
-                "Display a photo, video, 360 tour, or floor plan on the guest's screen. "
-                "Call whenever the customer asks to SEE something visual. "
-                "Never say the function name aloud — put guest-facing words only in speech."
-            ),
+            "name": name,
+            "description": description + _NAVIGATE_SUFFIX,
             "parameters": {
                 "type": "object",
                 "properties": {
-                    "asset_type": {
+                    "area": {
                         "type": "string",
-                        "enum": ["photo", "video", "tour_360", "floor_plan", "matterport"],
-                        "description": "Type of media to display",
+                        "enum": enum_values,
+                        "description": area_desc,
                     },
-                    "room_name": {
-                        "type": "string",
-                        "enum": [
-                            "overwater_pool_villa",
-                            "sunset_overwater_pool_villa",
-                            "one_bedroom_lagoon_pool_villa",
-                            "one_bedroom_sunset_lagoon_pool_villa",
-                            "one_bedroom_sunset_beach_pool_villa",
-                            "beach_pool_villa",
-                            "family_beach_pool_villa",
-                            "two_bedroom_family_lagoon_pool_villa",
-                            "two_bedroom_family_beach_pool_villa",
-                            "two_bedroom_overwater_pool_residence",
-                            "two_bedroom_beachfront_pool_residence",
-                            "three_bedroom_overwater_pool_residence",
-                            "three_bedroom_lagoon_pool_residence",
-                            "three_bedroom_royal_beachfront_pool_residence",
-                            "the_lighthouse",
-                            "fish_market",
-                            "cafe_umi",
-                            "the_collective",
-                            "the_retreat",
-                            "pool_bar",
-                            "sunset_bar",
-                            "wine_cellar",
-                            "avi_spa",
-                            "fitness_centre",
-                            "water_sports",
-                            "planet_trekkers",
-                            "teen_escapades",
-                            "resort_aerial",
-                            "resort_overview",
-                        ],
-                        "description": "Canonical area identifier",
-                    },
-                    "speech": {
-                        "type": "string",
-                        "description": (
-                            "What the avatar says while showing media — natural sentences only, "
-                            "no tool names or JSON."
-                        ),
-                    },
+                    "speech": _SPEECH_PARAM,
                 },
-                "required": ["asset_type", "room_name", "speech"],
+                "required": ["area", "speech"],
             },
         },
     }
+
+
+TOOLS = [
+    _nav_tool(
+        "navigate_resort_grounds",
+        "Navigate the 360 tour to a shared resort area — aerial views, the main pool, "
+        "the Retreat pool, or the Sunset Bar. Use when the guest wants a general overview "
+        "or asks about pools or common areas.",
+        [
+            "lighthouse beach aerial", "lagoon aerial view", "main pool aerial view",
+            "resort overview", "sunset bar", "main pool", "retreat pool",
+        ],
+        "Exact area value. Options: lighthouse beach aerial, lagoon aerial view, "
+        "main pool aerial view, resort overview, sunset bar, main pool, retreat pool.",
+    ),
+    _nav_tool(
+        "navigate_dining",
+        "Navigate the 360 tour to one of the resort's restaurants: The Lighthouse, "
+        "Fish Market, or Café Umi. Use when the guest asks about dining or a restaurant.",
+        ["lighthouse restaurant", "fish market", "café umi"],
+        "Exact area value. Options: lighthouse restaurant, fish market, café umi.",
+    ),
+    _nav_tool(
+        "navigate_spa",
+        "Navigate the 360 tour to the AVI Spa — either the relaxation lounge or a "
+        "treatment room. Use when the guest asks about the spa, wellness, or treatments.",
+        ["avi spa relaxation lounge", "avi spa treatment room"],
+        "Exact area value. Options: avi spa relaxation lounge, avi spa treatment room.",
+    ),
+    _nav_tool(
+        "navigate_kids_and_family",
+        "Navigate the 360 tour to the Planet Trekkers kids club (indoor or outdoor). "
+        "Use when the guest asks about kids' facilities or the kids club.",
+        ["planet trekkers indoor", "planet trekkers outdoor"],
+        "Exact area value. Options: planet trekkers indoor, planet trekkers outdoor.",
+    ),
+    _nav_tool(
+        "navigate_beach_pool_villas",
+        "Navigate the 360 tour to a beach-side pool villa room. Covers Beach Pool Villa, "
+        "Family Beach Pool Villa, One Bedroom Beach Pool Villa, and Two Bedroom Family "
+        "Beach Pool Villa. Use when the guest asks about a beach villa.",
+        [
+            "beach pool villa bedroom", "beach pool villa bathroom",
+            "family beach pool villa master bedroom",
+            "family beach pool villa master bathroom",
+            "family beach pool villa family room",
+            "one bedroom beach pool villa living room",
+            "one bedroom beach pool villa bedroom",
+            "two bedroom family beach pool villa living room",
+            "two bedroom family beach pool villa master bedroom",
+            "two bedroom family beach pool villa second bedroom",
+        ],
+        "Exact area value for a beach villa room.",
+    ),
+    _nav_tool(
+        "navigate_beachfront_residences",
+        "Navigate the 360 tour to a beachfront pool residence room. Covers Two Bedroom "
+        "Beachfront Pool Residence and Three Bedroom Royal Beachfront Residence. Use when "
+        "the guest asks about a beachfront residence or royal residence.",
+        [
+            "two bedroom beachfront pool residence living room",
+            "two bedroom beachfront pool residence master bedroom",
+            "two bedroom beachfront pool residence master bathroom",
+            "two bedroom beachfront pool residence second bedroom",
+            "two bedroom beachfront pool residence second bathroom",
+            "two bedroom beachfront pool residence pool deck",
+            "three bedroom royal beachfront residence living room",
+            "three bedroom royal beachfront residence master bedroom",
+            "three bedroom royal beachfront residence second bedroom",
+            "three bedroom royal beachfront residence third bedroom",
+            "three bedroom royal beachfront residence pool deck",
+        ],
+        "Exact area value for a beachfront residence room.",
+    ),
+    _nav_tool(
+        "navigate_lagoon_pool_villas",
+        "Navigate the 360 tour to a lagoon-side pool villa room. Covers One Bedroom "
+        "Lagoon Pool Villa and Two Bedroom Lagoon Pool Villa. Use when the guest asks "
+        "about a lagoon villa.",
+        [
+            "one bedroom lagoon pool villa living room",
+            "one bedroom lagoon pool villa bedroom",
+            "one bedroom lagoon pool villa bathroom",
+            "two bedroom lagoon pool villa living room",
+            "two bedroom lagoon pool villa master bedroom",
+            "two bedroom lagoon pool villa master bathroom",
+            "two bedroom lagoon pool villa second bedroom",
+        ],
+        "Exact area value for a lagoon villa room.",
+    ),
+    _nav_tool(
+        "navigate_lagoon_residence",
+        "Navigate the 360 tour to the Three Bedroom Lagoon Pool Villa Residence — "
+        "living room, dining area, pool deck, and all bedrooms/bathrooms. Use when the "
+        "guest asks about the lagoon residence.",
+        [
+            "three bedroom lagoon residence living room",
+            "three bedroom lagoon residence dining area",
+            "three bedroom lagoon residence pool deck",
+            "three bedroom lagoon residence master bedroom",
+            "three bedroom lagoon residence master bathroom",
+            "three bedroom lagoon residence second bedroom",
+            "three bedroom lagoon residence second bathroom",
+            "three bedroom lagoon residence third bedroom",
+            "three bedroom lagoon residence third bathroom",
+        ],
+        "Exact area value for a lagoon residence room.",
+    ),
+    _nav_tool(
+        "navigate_overwater_pool_villas",
+        "Navigate the 360 tour to an overwater pool villa room. Covers Overwater Pool "
+        "Villa (1BR) and Two Bedroom Overwater Pool Villa. Use when the guest asks about "
+        "an overwater villa.",
+        [
+            "overwater pool villa bedroom",
+            "overwater pool villa bathroom",
+            "two bedroom overwater pool villa living room",
+            "two bedroom overwater pool villa master bedroom",
+            "two bedroom overwater pool villa master bathroom",
+            "two bedroom overwater pool villa second bedroom",
+            "two bedroom overwater pool villa second bathroom",
+        ],
+        "Exact area value for an overwater villa room.",
+    ),
+    _nav_tool(
+        "navigate_overwater_residence",
+        "Navigate the 360 tour to the Three Bedroom Overwater Pool Residence — aerial "
+        "view, living room, and all bedrooms/bathrooms. Use when the guest asks about "
+        "the overwater residence or three bedroom overwater.",
+        [
+            "three bedroom overwater pool residence aerial view",
+            "three bedroom overwater pool residence living room",
+            "three bedroom overwater pool residence master bedroom",
+            "three bedroom overwater pool residence second bedroom",
+            "three bedroom overwater pool residence second bathroom",
+            "three bedroom overwater pool residence third bedroom",
+            "three bedroom overwater pool residence third bathroom",
+        ],
+        "Exact area value for an overwater residence room.",
+    ),
 ]
+
+NAVIGATE_TOOL_NAMES = {t["function"]["name"] for t in TOOLS}
 
 
 def _make_chunk(
@@ -141,34 +259,6 @@ def _extract_request(messages: list) -> tuple[str, list[Message]]:
             break
 
     return user_message, history
-
-
-def _normalize_room(name: str) -> str:
-    return name.strip().lower().replace("-", "_").replace(" ", "_")
-
-
-async def _resolve_media_asset(
-    db: AsyncSession, asset_type: str, room_name: str
-) -> MediaAsset | None:
-    normalized_room = _normalize_room(room_name)
-    assets = (
-        await db.scalars(
-            select(MediaAsset)
-            .where(MediaAsset.asset_type == asset_type)
-            .order_by(MediaAsset.sort_order.asc(), MediaAsset.id.asc())
-        )
-    ).all()
-
-    for asset in assets:
-        if _normalize_room(asset.room_name) == normalized_room:
-            return asset
-
-    for asset in assets:
-        tags = [t.strip().lower() for t in asset.tags.split(",") if t.strip()]
-        if normalized_room in tags:
-            return asset
-
-    return assets[0] if assets else None
 
 
 async def _find_call_session(db: AsyncSession, request: Request) -> CallSession | None:
@@ -232,11 +322,10 @@ async def chat_completions(request: Request):
                 tool_call = message.tool_calls[0]
                 fn = tool_call.function
                 args = json.loads(fn.arguments or "{}")
-                asset_type = args.get("asset_type", "")
-                room_name = args.get("room_name", "")
 
+                # Navigation is resolved + driven entirely on the frontend
+                # (krpanoController). Here we only log the tool call for audit.
                 async with AsyncSessionLocal() as db:
-                    asset = await _resolve_media_asset(db, asset_type, room_name)
                     call_session = await _find_call_session(db, request)
 
                     log = ToolCallLog(
@@ -246,15 +335,17 @@ async def chat_completions(request: Request):
                         else "",
                         tool_name=fn.name,
                         parameters=json.dumps(args),
-                        resolved_asset_id=asset.id if asset else None,
+                        resolved_asset_id=None,
                     )
                     db.add(log)
                     await db.commit()
 
                 tool_call_id = tool_call.id or f"call_{uuid.uuid4().hex[:8]}"
-                # Tool-call turn: emit tool_calls only. Do NOT stream speech or JSON as
-                # content — Tavus would read those aloud. The frontend handles speech
-                # via conversation.echo after conversation.tool_call fires.
+                # Stream the tool call in the exact multi-chunk format that
+                # OpenAI uses — Tavus's custom-LLM parser expects this shape
+                # to recognise it as a tool call rather than spoken content.
+                #
+                # Chunk 1: role + tool_call header (name, id, empty arguments)
                 yield _make_chunk(
                     role="assistant",
                     tool_calls=[
@@ -264,12 +355,24 @@ async def chat_completions(request: Request):
                             "type": "function",
                             "function": {
                                 "name": fn.name,
+                                "arguments": "",
+                            },
+                        }
+                    ],
+                )
+                # Chunk 2: stream the arguments string
+                yield _make_chunk(
+                    tool_calls=[
+                        {
+                            "index": 0,
+                            "function": {
                                 "arguments": fn.arguments,
                             },
                         }
                     ],
-                    finish_reason="tool_calls",
                 )
+                # Chunk 3: finish_reason only (empty delta)
+                yield _make_chunk(finish_reason="tool_calls")
                 yield "data: [DONE]\n\n"
                 return
 

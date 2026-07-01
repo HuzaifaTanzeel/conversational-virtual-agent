@@ -110,6 +110,104 @@ def _send_smtp_sync(to_email: str, subject: str, text_body: str, html_body: str)
             server.sendmail(settings.smtp_from_email, [to_email], msg.as_string())
 
 
+def _build_details_email_bodies(
+    prospect_name: str,
+    detail_type: str,
+    brochure_url: str,
+    company_name: str,
+) -> tuple[str, str]:
+    """Build plain + HTML bodies for a resort details email."""
+    detail_label = detail_type.replace("_", " ").title()
+
+    text = f"""Hi {prospect_name},
+
+Thank you for your interest in {detail_label} at InterContinental Maldives Maamunagau Resort!
+
+Here are the details you requested:
+
+Planet Trekkers Kids Club offers a programme of tailored services and activities for children aged 4-12 years old. The programme connects families with their island location and supports children's growth, curiosity, and creativity.
+
+Highlights:
+- Spacious indoor space with a library, arts & crafts area
+- Outdoor area with splash pool, garden, and climbing frame
+- Activities: nature walks, palm weaving, cooking classes, water sports, marine biology sessions
+- Opening hours: 9:00 AM - 6:00 PM
+- Babysitting available (24hr advance booking)
+
+View the full brochure here: {brochure_url}
+
+For reservations and enquiries:
+Tel: +960 658 0500
+WhatsApp (24/7): +960 730 9300
+Email: reservations.icmaldives@ihg.com
+
+We look forward to welcoming your family!
+
+— {company_name}
+"""
+
+    html = f"""<!DOCTYPE html>
+<html>
+<body style="font-family: Arial, sans-serif; color: #1e293b; line-height: 1.6;">
+  <p>Hi {prospect_name},</p>
+  <p>Thank you for your interest in <strong>{detail_label}</strong> at InterContinental Maldives Maamunagau Resort!</p>
+
+  <h3 style="color: #4f46e5;">Planet Trekkers Kids Club</h3>
+  <p>Planet Trekkers offers a programme of tailored services and activities for children aged 4-12 years old,
+  connecting families with their island location and supporting children's growth, curiosity, and creativity.</p>
+
+  <h4>Highlights:</h4>
+  <ul>
+    <li>Spacious indoor space with library, arts &amp; crafts area</li>
+    <li>Outdoor area with splash pool, garden, and climbing frame</li>
+    <li>Activities: nature walks, palm weaving, cooking classes, water sports, marine biology sessions</li>
+    <li>Opening hours: 9:00 AM - 6:00 PM</li>
+    <li>Babysitting available (24hr advance booking)</li>
+  </ul>
+
+  <p>
+    <a href="{brochure_url}"
+       style="display: inline-block; background: #4f46e5; color: white; padding: 12px 24px;
+              text-decoration: none; border-radius: 8px; font-weight: bold;">
+      View Full Brochure
+    </a>
+  </p>
+
+  <p style="margin-top: 24px; font-size: 14px; color: #64748b;">
+    <strong>Reservations &amp; Enquiries:</strong><br>
+    Tel: +960 658 0500<br>
+    WhatsApp (24/7): +960 730 9300<br>
+    Email: reservations.icmaldives@ihg.com
+  </p>
+
+  <p>We look forward to welcoming your family!</p>
+  <p>— {company_name}</p>
+</body>
+</html>"""
+
+    return text, html
+
+
+async def send_details_email(
+    to_email: str,
+    prospect_name: str,
+    detail_type: str = "planet_trekkers",
+    brochure_url: str = "",
+    company_name: str = "InterContinental Maldives",
+) -> None:
+    """Send resort details (e.g. Planet Trekkers brochure) to a guest."""
+    detail_label = detail_type.replace("_", " ").title()
+    subject = f"{detail_label} — InterContinental Maldives"
+    text_body, html_body = _build_details_email_bodies(
+        prospect_name=prospect_name,
+        detail_type=detail_type,
+        brochure_url=brochure_url,
+        company_name=company_name,
+    )
+    await asyncio.to_thread(_send_smtp_sync, to_email, subject, text_body, html_body)
+    logger.info("Details email (%s) sent to %s", detail_type, to_email)
+
+
 async def send_meeting_invite_email(
     to_email: str,
     prospect_name: str,

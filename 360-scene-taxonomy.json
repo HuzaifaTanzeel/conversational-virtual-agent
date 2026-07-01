@@ -1,0 +1,218 @@
+{
+  "property": {
+    "name": "InterContinental Maldives Maamunagau Resort",
+    "source_url": "https://maldives.intercontinental.com/"
+  },
+  "categories": [
+    {
+      "category_id": "resort_overview",
+      "category_name": "Resort Overview",
+      "scenes": [
+        { "scene_id": "main-pool-area", "name": "Main Pool Area" },
+        { "scene_id": "main-pool-aerial", "name": "Main Pool - Aerial View" },
+        { "scene_id": "sunset-bar", "name": "Sunset Bar" }
+      ]
+    },
+    {
+      "category_id": "wellness_spa",
+      "category_name": "Wellness - AVI Spa",
+      "default_scene_id": "spa-treatment-room",
+      "default_trigger_keywords": ["spa", "massage", "wellness", "treatment"],
+      "scenes": [
+        { "scene_id": "spa-treatment-room", "name": "Treatment Room", "is_default": true },
+        { "scene_id": "spa-relaxation-lounge", "name": "Relaxation Lounge" }
+      ]
+    },
+    {
+      "category_id": "kids_family",
+      "category_name": "Kids & Family",
+      "default_scene_id": "kids-planet-trekkers",
+      "default_trigger_keywords": ["kids", "kids club", "kids area", "kids facilities", "children", "planet trekkers"],
+      "scenes": [
+        { "scene_id": "kids-planet-trekkers", "name": "Planet Trekkers (Kids Club)", "is_default": true }
+      ]
+    },
+    {
+      "category_id": "dining",
+      "category_name": "Dining",
+      "default_scene_id": null,
+      "requires_clarification": true,
+      "clarification_prompt": "Which dining venue: The Lighthouse, Fish Market, or Café Umi?",
+      "scenes": [
+        { "scene_id": "dining-lighthouse", "name": "The Lighthouse Restaurant", "aliases": ["lighthouse"] },
+        { "scene_id": "dining-lighthouse-aerial", "name": "The Lighthouse - Aerial View", "aliases": ["lighthouse aerial"] },
+        { "scene_id": "dining-fish-market", "name": "Fish Market", "aliases": ["fish market"] },
+        { "scene_id": "dining-cafe-umi", "name": "Café Umi", "aliases": ["cafe umi", "café umi"], "notes": "Originally listed as 'Cafe Omi' - corrected to confirmed official name." }
+      ]
+    },
+    {
+      "category_id": "lagoon",
+      "category_name": "Lagoon Area",
+      "facility_scenes": [
+        { "scene_id": "lagoon-aerial", "name": "Lagoon - Aerial View" },
+        { "scene_id": "lagoon-retreat-pool", "name": "The Retreat Pool (Lagoon, adults-only)" }
+      ],
+      "villas": [
+        {
+          "villa_id": "lagoon-villa-1br",
+          "name": "One Bedroom Lagoon Pool Villa",
+          "bedrooms": 1,
+          "rooms": [
+            { "scene_id": "lagoon-villa-1br-living-room", "name": "Living Room" },
+            { "scene_id": "lagoon-villa-1br-bedroom", "name": "Bedroom" },
+            { "scene_id": "lagoon-villa-1br-bathroom", "name": "Bathroom" }
+          ]
+        },
+        {
+          "villa_id": "lagoon-villa-2br",
+          "name": "Two Bedroom Lagoon Pool Villa",
+          "bedrooms": 2,
+          "rooms": [
+            { "scene_id": "lagoon-villa-2br-living-room", "name": "Living Room" },
+            { "scene_id": "lagoon-villa-2br-master-bedroom", "name": "Master Bedroom" },
+            { "scene_id": "lagoon-villa-2br-second-bedroom", "name": "Second Bedroom" }
+          ]
+        },
+        {
+          "villa_id": "lagoon-villa-3br-residence",
+          "name": "Three Bedroom Lagoon Pool Villa Residence",
+          "bedrooms": 3,
+          "rooms": [
+            { "scene_id": "lagoon-villa-3br-living-room", "name": "Living Room" },
+            { "scene_id": "lagoon-villa-3br-dining-area", "name": "Dining Area" },
+            { "scene_id": "lagoon-villa-3br-pool-deck", "name": "Pool Deck" },
+            { "scene_id": "lagoon-villa-3br-master-bedroom", "name": "Master Bedroom" },
+            { "scene_id": "lagoon-villa-3br-master-bathroom", "name": "Master Bathroom" },
+            { "scene_id": "lagoon-villa-3br-second-bedroom", "name": "Second Bedroom" },
+            { "scene_id": "lagoon-villa-3br-second-bathroom", "name": "Second Bathroom" },
+            { "scene_id": "lagoon-villa-3br-third-bedroom", "name": "Third Bedroom" },
+            { "scene_id": "lagoon-villa-3br-third-bathroom", "name": "Third Bathroom" }
+          ]
+        }
+      ]
+    },
+    {
+      "category_id": "overwater_villas",
+      "category_name": "Overwater Pool Villas",
+      "villas": [
+        {
+          "villa_id": "overwater-villa-1br",
+          "name": "One Bedroom Overwater Pool Villa",
+          "bedrooms": 1,
+          "rooms": [
+            { "scene_id": "overwater-villa-1br-bedroom", "name": "Bedroom" },
+            { "scene_id": "overwater-villa-1br-bathroom", "name": "Bathroom" }
+          ]
+        },
+        {
+          "villa_id": "overwater-villa-2br",
+          "name": "Two Bedroom Overwater Pool Villa",
+          "bedrooms": 2,
+          "rooms": [
+            { "scene_id": "overwater-villa-2br-master-bedroom", "name": "Master Bedroom" },
+            { "scene_id": "overwater-villa-2br-master-bathroom", "name": "Master Bathroom" },
+            { "scene_id": "overwater-villa-2br-second-bedroom", "name": "Second Bedroom" },
+            { "scene_id": "overwater-villa-2br-second-bathroom", "name": "Second Bathroom" },
+            { "scene_id": "overwater-villa-2br-living-room", "name": "Living Room" }
+          ]
+        },
+        {
+          "villa_id": "overwater-villa-3br",
+          "name": "Three Bedroom Overwater Pool Villa",
+          "bedrooms": 3,
+          "rooms": [
+            { "scene_id": "overwater-villa-3br-master-bedroom", "name": "Master Bedroom" },
+            { "scene_id": "overwater-villa-3br-second-bedroom", "name": "Second Bedroom" },
+            { "scene_id": "overwater-villa-3br-second-bathroom", "name": "Second Bathroom" },
+            { "scene_id": "overwater-villa-3br-third-bedroom", "name": "Third Bedroom" },
+            { "scene_id": "overwater-villa-3br-third-bathroom", "name": "Third Bathroom" },
+            { "scene_id": "overwater-villa-3br-living-room", "name": "Living Room" },
+            { "scene_id": "overwater-villa-3br-aerial-view", "name": "Aerial View" }
+          ],
+          "notes": "No 'Master Bathroom' scene was provided for this villa, unlike its 2BR sibling. Flagged for confirmation - not invented."
+        }
+      ]
+    },
+    {
+      "category_id": "beach_villas",
+      "category_name": "Beach Villas",
+      "villas": [
+        {
+          "villa_id": "beach-villa-pool",
+          "name": "Beach Pool Villa",
+          "bedrooms": 1,
+          "rooms": [
+            { "scene_id": "beach-villa-pool-bedroom", "name": "Bedroom" },
+            { "scene_id": "beach-villa-pool-bathroom", "name": "Bathroom" }
+          ]
+        },
+        {
+          "villa_id": "beach-villa-family",
+          "name": "Family Beach Pool Villa",
+          "bedrooms": 1,
+          "rooms": [
+            { "scene_id": "beach-villa-family-master-bedroom", "name": "Master Bedroom" },
+            { "scene_id": "beach-villa-family-master-bathroom", "name": "Master Bathroom" },
+            { "scene_id": "beach-villa-family-family-room", "name": "Family Room" }
+          ]
+        },
+        {
+          "villa_id": "beach-villa-1br",
+          "name": "One Bedroom Beach Pool Villa",
+          "bedrooms": 1,
+          "rooms": [
+            { "scene_id": "beach-villa-1br-bedroom", "name": "Bedroom" },
+            { "scene_id": "beach-villa-1br-living-room", "name": "Living Room" }
+          ]
+        },
+        {
+          "villa_id": "beach-villa-2br-family",
+          "name": "Two Bedroom Family Beach Pool Villa",
+          "bedrooms": 2,
+          "rooms": [
+            { "scene_id": "beach-villa-2br-family-master-bedroom", "name": "Master Bedroom" },
+            { "scene_id": "beach-villa-2br-family-second-bedroom", "name": "Second Bedroom" },
+            { "scene_id": "beach-villa-2br-family-living-room", "name": "Living Room" }
+          ]
+        },
+        {
+          "villa_id": "beach-residence-2br",
+          "name": "Two Bedroom Beachfront Pool Residence",
+          "bedrooms": 2,
+          "rooms": [
+            { "scene_id": "beach-residence-2br-master-bedroom", "name": "Master Bedroom" },
+            { "scene_id": "beach-residence-2br-master-bathroom", "name": "Master Bathroom" },
+            { "scene_id": "beach-residence-2br-second-bedroom", "name": "Second Bedroom" },
+            { "scene_id": "beach-residence-2br-pool-deck", "name": "Pool Deck" },
+            { "scene_id": "beach-residence-2br-living-room", "name": "Living Room" }
+          ]
+        },
+        {
+          "villa_id": "beach-residence-3br-royal",
+          "name": "Three Bedroom Royal Beachfront Residence",
+          "bedrooms": 3,
+          "rooms": [
+            { "scene_id": "beach-residence-3br-royal-master-bedroom", "name": "Master Bedroom" },
+            { "scene_id": "beach-residence-3br-royal-second-bedroom", "name": "Second Bedroom" },
+            { "scene_id": "beach-residence-3br-royal-third-bedroom", "name": "Third Bedroom" },
+            { "scene_id": "beach-residence-3br-royal-pool-deck", "name": "Pool Deck" },
+            { "scene_id": "beach-residence-3br-royal-living-room", "name": "Living Room" }
+          ]
+        }
+      ]
+    }
+  ],
+  "llm_routing_rules": {
+    "principle": "Only auto-resolve to a single scene_id when an explicit default is defined below, or the request maps unambiguously to exactly one scene_id. Otherwise, ask a clarifying question listing the real available options instead of guessing.",
+    "rules": [
+      { "user_intent": "spa (generic)", "action": "resolve", "scene_id": "spa-treatment-room" },
+      { "user_intent": "kids area / kids club / kids facilities (generic)", "action": "resolve", "scene_id": "kids-planet-trekkers" },
+      { "user_intent": "restaurant / dining (generic)", "action": "clarify", "options": ["dining-lighthouse", "dining-fish-market", "dining-cafe-umi"] },
+      { "user_intent": "pool (generic)", "action": "clarify", "options": ["main-pool-area", "lagoon-retreat-pool", "villa-specific private pool"] },
+      { "user_intent": "villa (no area or bedroom count given)", "action": "clarify", "ask_for": ["area (lagoon/overwater/beach)", "bedroom count"] },
+      { "user_intent": "N-bedroom villa (no area given)", "action": "clarify", "reason": "Lagoon, Overwater, and Beach each have a distinct villa for the same bedroom count" },
+      { "user_intent": "residence (generic)", "action": "clarify", "options": ["lagoon-villa-3br-residence", "beach-residence-2br", "beach-residence-3br-royal"] },
+      { "user_intent": "specific room of a named villa", "action": "resolve_directly", "reason": "Unambiguous once villa + room are both specified" }
+    ]
+  }
+}
