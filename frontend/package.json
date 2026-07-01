@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "generate:gecko-labels": "node scripts/generate-gecko-display-labels.mjs",
+    "validate:scene-nav": "node scripts/validate-scene-nav.mjs"
   },
   "dependencies": {
     "@daily-co/daily-js": "^0.79.0",

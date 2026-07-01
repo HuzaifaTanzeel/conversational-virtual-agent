@@ -3,7 +3,8 @@ import { AvatarStage } from "./AvatarStage.jsx";
 import { SelfPreview } from "./SelfPreview.jsx";
 import { CallControls } from "./CallControls.jsx";
 import { TranscriptPanel } from "./TranscriptPanel.jsx";
-import { MediaPanel } from "./MediaPanel.jsx";
+import { TourViewer } from "./TourViewer.jsx";
+import { TourAreaNav } from "./TourAreaNav.jsx";
 import { Clock, MessageSquare, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -20,7 +21,6 @@ export function VideoCallRoom({
   onStart,
   displayName,
   minutesRemaining,
-  currentMedia,
 }) {
   const stageRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -65,7 +65,10 @@ export function VideoCallRoom({
     }
   }, []);
 
-  const mediaActive = Boolean(currentMedia);
+  // The 360 tour is the stage for the whole call. It mounts once connected and
+  // persists; the agent drives it via krpanoController, and the guest can also
+  // explore it freely. The avatar sits on top as a Meet-style PiP.
+  const tourActive = avatar.isConnected;
 
   return (
     <div className="relative flex h-[100dvh] flex-col overflow-hidden bg-[#202124] text-white">
@@ -112,30 +115,50 @@ export function VideoCallRoom({
             ref={stageRef}
             className={cn(
               "relative flex-1 min-h-0 m-2 sm:m-3 mb-0 overflow-hidden",
-              mediaActive ? "bg-black" : "bg-[#3c4043]",
+              tourActive ? "bg-black" : "bg-[#3c4043]",
               transcriptOpen ? "rounded-t-2xl sm:rounded-2xl sm:mr-0" : "rounded-2xl",
               isFullscreen && "rounded-none m-0",
             )}
           >
-            {/* Media layer — shown behind avatar when active */}
-            {mediaActive && (
-              <>
-                <div className="absolute inset-0 z-0">
-                  <MediaPanel media={currentMedia} />
+            {/* 360 tour layer — the persistent visual stage during the call */}
+            {tourActive && (
+              <div className="absolute inset-0 z-0">
+                <TourViewer />
+              </div>
+            )}
+
+            {tourActive && !avatar.brochureUrl && <TourAreaNav />}
+
+            {/* Brochure iframe overlay — replaces tour view when active */}
+            {tourActive && avatar.brochureUrl && (
+              <div className="absolute inset-0 z-[5] bg-white flex flex-col">
+                <div className="flex items-center justify-between px-4 py-2 bg-[#1e293b]">
+                  <span className="text-sm font-medium text-white/90">Brochure View</span>
+                  <button
+                    type="button"
+                    onClick={avatar.closeBrochure}
+                    className="rounded-md bg-white/10 px-3 py-1 text-xs font-medium text-white hover:bg-white/20 transition-colors"
+                  >
+                    Back to Tour
+                  </button>
                 </div>
-                <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[1] h-44 bg-gradient-to-t from-black/70 via-black/25 to-transparent" />
-                <div className="pointer-events-none absolute inset-x-0 top-0 z-[1] h-24 bg-gradient-to-b from-black/40 to-transparent" />
-              </>
+                <iframe
+                  src={avatar.brochureUrl}
+                  title="Brochure"
+                  className="flex-1 w-full border-0"
+                  allow="fullscreen"
+                />
+              </div>
             )}
 
             {/* Avatar — always rendered in same tree position; transitions between full and PiP via CSS */}
             <div
               className={cn(
                 "transition-all duration-500 ease-out",
-                mediaActive
+                tourActive
                   ? "absolute z-10 bottom-[5.5rem] left-3 sm:bottom-28 sm:left-5 w-[clamp(112px,16vw,220px)] aspect-[3/4] overflow-hidden rounded-xl border border-white/25 bg-[#3c4043] shadow-2xl"
                   : "absolute inset-0 z-0",
-                mediaActive && avatar.isAvatarSpeaking && "ring-2 ring-blue-400/60 ring-offset-2 ring-offset-black/20",
+                tourActive && avatar.isAvatarSpeaking && "ring-2 ring-blue-400/60 ring-offset-2 ring-offset-black/20",
               )}
             >
               <AvatarStage
@@ -144,7 +167,7 @@ export function VideoCallRoom({
                 isAvatarSpeaking={avatar.isAvatarSpeaking}
                 isUserSpeaking={avatar.isUserSpeaking}
                 status={avatar.status}
-                variant={mediaActive ? "pip" : "full"}
+                variant={tourActive ? "pip" : "full"}
               />
             </div>
 
@@ -154,7 +177,7 @@ export function VideoCallRoom({
               error={camera.error}
               label={displayName || "You"}
               className={cn(
-                mediaActive &&
+                tourActive &&
                   "!top-16 !right-3 !bottom-auto sm:!top-20 sm:!right-5 !w-[clamp(100px,14vw,180px)]",
               )}
             />

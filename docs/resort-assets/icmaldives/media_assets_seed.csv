@@ -1,0 +1,36 @@
+property_slug,asset_type,room_name,tags,caption,source_url,is_primary
+icmaldives,photo,overwater_pool_villa,"overwater villa, water villa, villa over the water, pool villa, stilt villa, overwater_villa",Overwater Pool Villa exterior with private pool and ocean view,/resort-media/icmaldives/villas/overwater_pool_villa.jpg,true
+icmaldives,tour_360,overwater_pool_villa,"overwater villa, water villa, virtual tour, 360 tour, overwater_villa",360 tour - Overwater Pool Villa living area,https://geckodigital.co/vt/IntercontinentalMaldives/,true
+icmaldives,photo,sunset_overwater_pool_villa,"sunset villa, sunset overwater, best sunset view villa",Sunset Overwater Pool Villa sundeck at dusk,/resort-media/icmaldives/villas/sunset_overwater_pool_villa.png,true
+icmaldives,photo,one_bedroom_lagoon_pool_villa,"lagoon villa, one bedroom lagoon, lagoon pool villa",One Bedroom Lagoon Pool Villa exterior,/resort-media/icmaldives/villas/one_bedroom_lagoon_pool_villa.jpg,true
+icmaldives,photo,one_bedroom_sunset_lagoon_pool_villa,"sunset lagoon villa, lagoon sunset villa",Sunset Lagoon Pool Villa sundeck,/resort-media/icmaldives/villas/one_bedroom_sunset_lagoon_pool_villa.jpg,true
+icmaldives,photo,one_bedroom_sunset_beach_pool_villa,"beach villa, sunset beach villa, garden villa",Sunset Beach Pool Villa garden and pool,/resort-media/icmaldives/villas/one_bedroom_sunset_beach_pool_villa.jpg,true
+icmaldives,photo,beach_pool_villa,"beach villa, beachfront villa, garden pool villa, beach_villa",Beach Pool Villa exterior with private pool,/resort-media/icmaldives/villas/beach_pool_villa.jpg,true
+icmaldives,photo,family_beach_pool_villa,"family villa, kids villa, family beach villa",Family Beach Pool Villa near Planet Trekkers kids club,/resort-media/icmaldives/villas/family_beach_pool_villa.jpg,true
+icmaldives,photo,two_bedroom_family_lagoon_pool_villa,"two bedroom family villa, family lagoon villa, two storey villa",Two Bedroom Family Lagoon Pool Villa,/resort-media/icmaldives/villas/two_bedroom_family_lagoon_pool_villa.jpg,true
+icmaldives,photo,two_bedroom_family_beach_pool_villa,"two bedroom family beach villa, family beach villa two bedroom",Two Bedroom Family Beach Pool Villa,/resort-media/icmaldives/villas/two_bedroom_family_beach_pool_villa.jpg,true
+icmaldives,photo,two_bedroom_overwater_pool_residence,"residence, two bedroom residence, overwater residence",Two Bedroom Overwater Pool Residence deck,/resort-media/icmaldives/residences/two_bedroom_overwater_pool_residence.jpg,true
+icmaldives,tour_360,two_bedroom_overwater_pool_residence,"residence virtual tour, overwater residence 360",360 tour - Two Bedroom Overwater Pool Residence,https://geckodigital.co/vt/IntercontinentalMaldives/,true
+icmaldives,photo,two_bedroom_beachfront_pool_residence,"beachfront residence, family residence",Two Bedroom Beachfront Pool Residence,/resort-media/icmaldives/residences/two_bedroom_beachfront_pool_residence.jpg,true
+icmaldives,photo,three_bedroom_overwater_pool_residence,"three bedroom residence, big residence, 3br residence",Three Bedroom Overwater Pool Residence,/resort-media/icmaldives/residences/three_bedroom_overwater_pool_residence.jpg,true
+icmaldives,photo,three_bedroom_lagoon_pool_residence,"three bedroom lagoon residence, lagoon residence",Three Bedroom Lagoon Pool Residence,/resort-media/icmaldives/residences/three_bedroom_lagoon_pool_residence.jpg,true
+icmaldives,photo,three_bedroom_royal_beachfront_pool_residence,"royal residence, most exclusive residence, presidential residence, royal_residence",Three Bedroom Royal Beachfront Pool Residence,/resort-media/icmaldives/residences/three_bedroom_royal_beachfront_pool_residence.jpg,true
+icmaldives,photo,the_lighthouse,"lighthouse restaurant, mediterranean restaurant, fine dining",The Lighthouse restaurant terrace at sunset,/resort-media/icmaldives/dining/the_lighthouse.jpg,true
+icmaldives,tour_360,the_lighthouse,"lighthouse 360, lighthouse virtual tour",360 view from the top of The Lighthouse,/resort-media/icmaldives/dining/the_lighthouse.jpg,false
+icmaldives,photo,fish_market,"fish market restaurant, seafood restaurant",Fish Market sea-to-table seafood counter,/resort-media/icmaldives/dining/fish_market.jpg,true
+icmaldives,photo,cafe_umi,"cafe umi, breakfast restaurant, all day dining",Cafe Umi all-day dining room,/resort-media/icmaldives/dining/cafe_umi.jpg,true
+icmaldives,photo,the_collective,"the collective, pool lounge, pizzeria, boutique",The Collective lounge and pizzeria,/resort-media/icmaldives/dining/the_collective.jpg,true
+icmaldives,photo,the_retreat,"the retreat, adults only bar, overwater lounge",The Retreat adults-only overwater lounge,/resort-media/icmaldives/dining/the_retreat.jpg,true
+icmaldives,photo,pool_bar,"pool bar, swim up bar",Pool Bar swim-up counter,/resort-media/icmaldives/dining/pool_bar.jpg,true
+icmaldives,photo,sunset_bar,"sunset bar, dhoni bar, champagne bar, sunset_bar",Sunset Bar dhoni-shaped counter at dusk,/resort-media/icmaldives/dining/sunset_bar.jpg,true
+icmaldives,photo,wine_cellar,"wine cellar, wine room",Wine Cellar curated selection,/resort-media/icmaldives/dining/wine_cellar.jpg,true
+icmaldives,photo,avi_spa,"spa, avi spa, wellness, massage, treatment villa",AVI Spa overwater treatment villa,/resort-media/icmaldives/spa/avi_spa.jpg,true
+icmaldives,tour_360,avi_spa,"spa 360, spa virtual tour",360 tour - AVI Spa overwater villa,https://geckodigital.co/vt/IntercontinentalMaldives/,true
+icmaldives,photo,fitness_centre,"gym, fitness centre, workout room",Ocean-view fitness centre,/resort-media/icmaldives/dining/fitness_centre.jpg,true
+icmaldives,photo,water_sports,"water sports, snorkeling, diving, kayak, paddleboard, water_sports",Water sports centre and lagoon,/resort-media/icmaldives/activities/water_sports.jpg,true
+icmaldives,video,water_sports,"water sports video, snorkeling video, manta ray video, water_sports",Snorkeling and manta ray footage,,false
+icmaldives,photo,manta_ray_experience,"manta ray, manta trust, manta retreat",Guests swimming with manta rays,/resort-media/icmaldives/dining/manta_ray_experience.jpg,true
+icmaldives,photo,planet_trekkers,"kids club, planet trekkers, children activities, kids_club",Planet Trekkers kids club activity room,/resort-media/icmaldives/family/planet_trekkers.jpg,true
+icmaldives,photo,teen_escapades,"teen club, teen escapades, teens activities",Teen Escapades lounge,/resort-media/icmaldives/dining/teen_escapades.jpg,true
+icmaldives,photo,resort_aerial,"resort overview, island aerial, whole resort, aerial view",Aerial view of the resort and lagoon,/resort-media/icmaldives/overview/resort_aerial.jpg,true
+icmaldives,tour_360,resort_overview,"resort virtual tour, full resort 360, island tour",Full resort 360 virtual tour (Gecko Digital),https://geckodigital.co/vt/IntercontinentalMaldives/,true

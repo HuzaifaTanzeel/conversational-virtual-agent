@@ -42,3 +42,22 @@
     -moz-osx-font-smoothing: grayscale;
   }
 }
+
+/* krpano on-screen error/log console — hidden during guest video calls */
+#krpano-pano [id*="log"],
+#krpanoSWFObject_log {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Keep krpano canvas/layers inside the tour panel on the dev scene debug page */
+.scene-debug-tour #krpano-pano,
+.scene-debug-tour #krpano-pano > div {
+  position: absolute !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100% !important;
+  max-width: 100% !important;
+  max-height: 100% !important;
+}

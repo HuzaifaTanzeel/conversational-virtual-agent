@@ -1,0 +1,24 @@
+<krpano>
+	<!--
+		Unencrypted stand-in for Gecko's encrypted layout.xml.
+
+		tour.xml inlines Gecko's designed menu (the AERIAL / ACCOMMODATION / DINING
+		bar and the per-villa room sub-menus), but the *styles* and the show/hide
+		interaction logic for that menu lived inside the encrypted layout.xml, which
+		we cannot decrypt off geckodigital.co. The encrypted original is preserved
+		as layout.gecko-encrypted.xml.bak.
+
+		Without Gecko's interaction script the designed menu can't behave correctly,
+		so we define its styles as hidden/non-interactive. This makes tour.xml parse
+		cleanly and keeps the viewport uncluttered. Guests navigate via the in-pano
+		hotspots and the AI agent; restore this file from Gecko's unencrypted menu
+		sources to bring the designed menu back.
+	-->
+
+	<style name="nav_menu_text"    type="text"      visible="false" enabled="false"/>
+	<style name="nav_submenu_text" type="text"      visible="false" enabled="false"/>
+	<style name="skin_submenu"     type="container" visible="false" enabled="false"/>
+	<style name="l_menu_cont"      type="container" visible="false" enabled="false"/>
+	<style name="l_menu"           type="text"      visible="false" enabled="false"/>
+
+</krpano>

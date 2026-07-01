@@ -71,6 +71,7 @@ async def _resolve_media_asset(
         await db.scalars(
             select(MediaAsset)
             .where(MediaAsset.asset_type == asset_type)
+            .where(MediaAsset.is_active.is_(True))
             .order_by(MediaAsset.sort_order.asc(), MediaAsset.id.asc())
         )
     ).all()
@@ -124,12 +125,37 @@ async def create_session(
             detail="No persona is configured. Set one in the admin portal before starting calls.",
         )
 
+    # Resolve guest name for personalized greeting
+    invite_for_greeting = await db.scalar(
+        select(MeetingInvite).where(
+            MeetingInvite.demo_user_id == demo_user.id,
+            MeetingInvite.status == "redeemed",
+            MeetingInvite.call_session_id.is_(None),
+        )
+    )
+    guest_name = (
+        (invite_for_greeting.prospect_name if invite_for_greeting else None)
+        or demo_user.display_name
+        or "there"
+    )
+    custom_greeting = (
+        f"Hello {guest_name}! Welcome to the InterContinental Maldives virtual tour. "
+        f"I'm Aria, your personal guide today. I'll be showing you around our beautiful "
+        f"island resort. Shall I start by taking you to one of our overwater villas?"
+    )
+
     client = TavusClient()
     try:
+        conversational_context = (
+            f"The guest's name is {guest_name}. Use their name occasionally to keep "
+            f"the conversation personal. Their email is on file from their booking."
+        )
         result = await client.create_conversation(
             replica_id=app_settings.replica_id,
             persona_id=app_settings.persona_id,
             conversation_name="Avatour Sales Call",
+            custom_greeting=custom_greeting,
+            conversational_context=conversational_context,
         )
     except TavusError as exc:
         logger.error("Tavus conversation creation failed: %s", exc.detail)

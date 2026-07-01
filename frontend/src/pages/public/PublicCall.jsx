@@ -200,8 +200,7 @@ function CallJoinGate({ onAuthed, initialMeetingId = "", initialPasscode = "", a
 
 function CallStage({ callToken, displayName, minutesRemaining }) {
   const [isStarting, setIsStarting] = useState(false);
-  const [currentMedia, setCurrentMedia] = useState(null);
-  const avatar = useTavus(callToken, { onMediaEvent: setCurrentMedia });
+  const avatar = useTavus(callToken);
   const camera = useLocalCamera();
 
   useEffect(() => {
@@ -234,7 +233,6 @@ function CallStage({ callToken, displayName, minutesRemaining }) {
       onStart={handleStart}
       displayName={displayName}
       minutesRemaining={minutesRemaining}
-      currentMedia={currentMedia}
     />
   );
 }

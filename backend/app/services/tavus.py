@@ -55,6 +55,7 @@ class TavusClient:
         persona_id: str,
         conversation_name: str = "Avatour Sales Call",
         custom_greeting: str = "",
+        conversational_context: str = "",
         properties: dict | None = None,
     ) -> dict:
         """Create a Tavus conversation. Returns conversation_id and conversation_url."""
@@ -65,6 +66,8 @@ class TavusClient:
         }
         if custom_greeting:
             payload["custom_greeting"] = custom_greeting
+        if conversational_context:
+            payload["conversational_context"] = conversational_context
         if properties:
             payload["properties"] = properties
         return await self._request("POST", "/v2/conversations", json=payload)
@@ -98,6 +101,7 @@ async def create_conversation(
     persona_id: str,
     conversation_name: str = "Avatour Sales Call",
     custom_greeting: str = "",
+    conversational_context: str = "",
     properties: dict | None = None,
 ) -> dict:
     return await TavusClient().create_conversation(
@@ -105,6 +109,7 @@ async def create_conversation(
         persona_id=persona_id,
         conversation_name=conversation_name,
         custom_greeting=custom_greeting,
+        conversational_context=conversational_context,
         properties=properties,
     )
 

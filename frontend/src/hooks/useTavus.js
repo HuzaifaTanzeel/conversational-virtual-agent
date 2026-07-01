@@ -5,8 +5,33 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import DailyIframe from "@daily-co/daily-js";
 import { createSession, endSession, postConversation, resolveToolCall } from "../lib/api";
+import { navigateToArea } from "../lib/krpanoController.js";
+import { NAVIGATE_TOOL_NAMES } from "../lib/sceneRegistry.js";
 
-export function useTavus(callToken, { onMediaEvent } = {}) {
+/**
+ * Build a spoken clarifying question when a room name maps to more than one
+ * villa/residence, e.g. "Which one did you mean — the Three Bedroom Lagoon
+ * Residence or the Two Bedroom Overwater Pool Villa?".
+ */
+function buildClarifyingQuestion(options = []) {
+  const labels = options.map((o) => `the ${o}`);
+  let list;
+  if (labels.length <= 1) {
+    list = labels.join("");
+  } else if (labels.length === 2) {
+    list = `${labels[0]} or ${labels[1]}`;
+  } else {
+    list = `${labels.slice(0, -1).join(", ")}, or ${labels[labels.length - 1]}`;
+  }
+  return `Which one did you mean — ${list}?`;
+}
+
+const BROCHURE_URLS = {
+  planet_trekkers:
+    "https://issuu.com/icmmg/docs/icm_planet-trekkers-brochure_final?fr=sN2ZlMjUzNDY5NDg",
+};
+
+export function useTavus(callToken) {
   const callRef = useRef(null);
   const avatarVideoRef = useRef(null);
   const avatarAudioRef = useRef(null);
@@ -15,7 +40,6 @@ export function useTavus(callToken, { onMediaEvent } = {}) {
   const conversationIdRef = useRef(null);
   const conversationUrlRef = useRef(null);
   const messagesRef = useRef([]);
-  const onMediaEventRef = useRef(onMediaEvent);
 
   const [isConnected, setIsConnected] = useState(false);
   const [isAvatarSpeaking, setIsAvatarSpeaking] = useState(false);
@@ -32,10 +56,7 @@ export function useTavus(callToken, { onMediaEvent } = {}) {
   const [isSpeakerMuted, setIsSpeakerMuted] = useState(false);
   const [avatarVolume, setAvatarVolumeState] = useState(1);
   const [remoteParticipants, setRemoteParticipants] = useState({});
-
-  useEffect(() => {
-    onMediaEventRef.current = onMediaEvent;
-  }, [onMediaEvent]);
+  const [brochureUrl, setBrochureUrl] = useState(null);
 
   useEffect(() => {
     callTokenRef.current = callToken;
@@ -102,44 +123,94 @@ export function useTavus(callToken, { onMediaEvent } = {}) {
   const handleToolCall = useCallback(
     async (call, data) => {
       const toolName = data.properties?.name;
+      console.log("[tavus] tool_call received:", toolName, data.properties);
       if (!toolName) return;
 
+      const rawArgs = data.properties?.arguments;
       let parameters = {};
       try {
-        const rawArgs = data.properties?.arguments;
         parameters =
           typeof rawArgs === "string" ? JSON.parse(rawArgs) : rawArgs || {};
       } catch (err) {
-        console.warn("Failed to parse tool call arguments:", err);
+        console.warn("[tavus] Failed to parse tool call arguments:", rawArgs, err);
+      }
+      console.log("[tavus] tool args", {
+        tool: toolName,
+        raw: rawArgs,
+        parsed: parameters,
+        area: parameters.area,
+        speech: parameters.speech,
+      });
+
+      if (toolName === "show_brochure") {
+        const brochureId = parameters.brochure_id || "planet_trekkers";
+        const url = BROCHURE_URLS[brochureId];
+        if (url) {
+          setBrochureUrl(url);
+          console.log(`[tavus] show_brochure: showing ${brochureId}`);
+        }
+        const speech = parameters.speech?.trim() || "";
+        if (speech && call && data.conversation_id) {
+          call.sendAppMessage(
+            {
+              message_type: "conversation",
+              event_type: "conversation.echo",
+              conversation_id: data.conversation_id,
+              properties: { modality: "text", text: speech, done: true },
+            },
+            "*",
+          );
+        }
+        return;
       }
 
-      if (toolName === "show_media") {
-        const callSessionId = callSessionIdRef.current;
-        const callToken = callTokenRef.current;
-        let resolved = { asset_url: "", asset_type: parameters.asset_type };
+      if (toolName === "navigate_to_area" || NAVIGATE_TOOL_NAMES.has(toolName)) {
+        // Clear brochure overlay when navigating
+        setBrochureUrl(null);
 
-        if (callSessionId && callToken) {
-          try {
-            resolved = await resolveToolCall(
-              callSessionId,
-              { tool_name: toolName, parameters },
-              callToken,
-            );
-          } catch (err) {
-            console.warn("Failed to resolve media tool call:", err);
-          }
+        // Stop any in-flight replica speech so we don't narrate a place we
+        // haven't shown yet (Tavus may already be reading the tool speech).
+        if (call && data.conversation_id) {
+          call.sendAppMessage(
+            {
+              message_type: "conversation",
+              event_type: "conversation.interrupt",
+              conversation_id: data.conversation_id,
+              properties: {},
+            },
+            "*",
+          );
         }
 
-        onMediaEventRef.current?.({
-          toolName,
-          parameters: {
-            ...parameters,
-            asset_url: resolved.asset_url || "",
-            asset_type: resolved.asset_type || parameters.asset_type,
-          },
-        });
+        // Direct registry lookup: enum value -> krpano scene. No NLP needed.
+        const result = navigateToArea(parameters.area || "");
+        console.log(
+          `[tavus] navigate_to_area: "${parameters.area}" => ${result.status}` +
+            (result.krpanoSceneId ? ` (${result.krpanoSceneId} / "${result.label}")` : ""),
+          result,
+        );
 
-        const speech = parameters.speech?.trim();
+        // Best-effort logging only (no asset resolution anymore).
+        const callSessionId = callSessionIdRef.current;
+        const callToken = callTokenRef.current;
+        if (callSessionId && callToken) {
+          resolveToolCall(
+            callSessionId,
+            { tool_name: toolName, parameters },
+            callToken,
+          ).catch((err) => {
+            console.warn("Failed to log navigate tool call:", err);
+          });
+        }
+
+        // Decide what the avatar says. On success we use the LLM's speech; for
+        // ambiguous/not-found we override so it asks/redirects instead of
+        // pretending it showed something.
+        let speech = parameters.speech?.trim() || "";
+        if (result.status === "notFound") {
+          speech = `I'm sorry, I wasn't able to find that area in the tour. Is there another part of the resort I can show you?`;
+        }
+
         if (speech && call && data.conversation_id) {
           call.sendAppMessage(
             {
@@ -206,6 +277,12 @@ export function useTavus(callToken, { onMediaEvent } = {}) {
       call.on("app-message", (event) => {
         const data = event?.data;
         if (!data) return;
+
+        // Trace every conversation event so tool calls (or their absence) are
+        // visible in the console while debugging navigation.
+        if (data.event_type && data.event_type !== "conversation.utterance") {
+          console.log("[tavus] app-message:", data.event_type, data.properties);
+        }
 
         if (data.conversation_id) {
           conversationIdRef.current = data.conversation_id;
@@ -387,6 +464,10 @@ export function useTavus(callToken, { onMediaEvent } = {}) {
     };
   }, []);
 
+  const closeBrochure = useCallback(() => {
+    setBrochureUrl(null);
+  }, []);
+
   return {
     start,
     stop,
@@ -407,5 +488,7 @@ export function useTavus(callToken, { onMediaEvent } = {}) {
     videoElement,
     sessionWarning,
     remoteParticipants,
+    brochureUrl,
+    closeBrochure,
   };
 }
