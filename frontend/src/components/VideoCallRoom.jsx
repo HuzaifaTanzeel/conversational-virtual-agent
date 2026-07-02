@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from "react";
-import { AvatarStage } from "./AvatarStage.jsx";
-import { SelfPreview } from "./SelfPreview.jsx";
 import { CallControls } from "./CallControls.jsx";
 import { TranscriptPanel } from "./TranscriptPanel.jsx";
 import { TourViewer } from "./TourViewer.jsx";
 import { TourAreaNav } from "./TourAreaNav.jsx";
+import { ParticipantPanel } from "./ParticipantPanel.jsx";
 import { Clock, MessageSquare, Shield } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -17,10 +16,9 @@ function formatDuration(seconds) {
 export function VideoCallRoom({
   avatar,
   camera,
-  isStarting,
-  onStart,
   displayName,
   minutesRemaining,
+  onLeave,
 }) {
   const stageRef = useRef(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -42,10 +40,6 @@ export function VideoCallRoom({
     return () => document.removeEventListener("fullscreenchange", onFsChange);
   }, []);
 
-  const handleStart = useCallback(async () => {
-    await onStart();
-  }, [onStart]);
-
   const handleEnd = useCallback(async () => {
     await avatar.stop();
     camera.stop();
@@ -53,7 +47,8 @@ export function VideoCallRoom({
       document.exitFullscreen?.();
     }
     setIsFullscreen(false);
-  }, [avatar, camera]);
+    onLeave?.();
+  }, [avatar, camera, onLeave]);
 
   const toggleFullscreen = useCallback(() => {
     const el = stageRef.current;
@@ -65,9 +60,6 @@ export function VideoCallRoom({
     }
   }, []);
 
-  // The 360 tour is the stage for the whole call. It mounts once connected and
-  // persists; the agent drives it via krpanoController, and the guest can also
-  // explore it freely. The avatar sits on top as a Meet-style PiP.
   const tourActive = avatar.isConnected;
 
   return (
@@ -99,7 +91,7 @@ export function VideoCallRoom({
             <button
               type="button"
               onClick={() => setTranscriptOpen(true)}
-              className="sm:hidden flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/80 hover:bg-white/20 transition-colors"
+              className="lg:hidden flex h-9 w-9 items-center justify-center rounded-full bg-white/10 text-white/80 hover:bg-white/20 transition-colors"
               aria-label="Show captions"
             >
               <MessageSquare className="h-4 w-4" />
@@ -109,120 +101,94 @@ export function VideoCallRoom({
       </header>
 
       <div className="flex flex-1 min-h-0 pt-14">
-        {/* Main stage — full width */}
         <div className="relative flex flex-1 flex-col min-h-0 min-w-0">
           <div
             ref={stageRef}
             className={cn(
-              "relative flex-1 min-h-0 m-2 sm:m-3 mb-0 overflow-hidden",
+              "relative flex flex-1 min-h-0 flex-col overflow-hidden",
+              "m-2 sm:m-3 mb-0",
               tourActive ? "bg-black" : "bg-[#3c4043]",
-              transcriptOpen ? "rounded-t-2xl sm:rounded-2xl sm:mr-0" : "rounded-2xl",
+              "rounded-t-2xl sm:rounded-2xl",
               isFullscreen && "rounded-none m-0",
             )}
           >
-            {/* 360 tour layer — the persistent visual stage during the call */}
-            {tourActive && (
-              <div className="absolute inset-0 z-0">
-                <TourViewer />
-              </div>
-            )}
-
-            {tourActive && !avatar.brochureUrl && <TourAreaNav />}
-
-            {/* Brochure iframe overlay — replaces tour view when active */}
-            {tourActive && avatar.brochureUrl && (
-              <div className="absolute inset-0 z-[5] bg-white flex flex-col">
-                <div className="flex items-center justify-between px-4 py-2 bg-[#1e293b]">
-                  <span className="text-sm font-medium text-white/90">Brochure View</span>
-                  <button
-                    type="button"
-                    onClick={avatar.closeBrochure}
-                    className="rounded-md bg-white/10 px-3 py-1 text-xs font-medium text-white hover:bg-white/20 transition-colors"
-                  >
-                    Back to Tour
-                  </button>
+            <div className="relative flex-1 min-h-0 overflow-hidden rounded-t-2xl sm:rounded-2xl">
+              {tourActive && (
+                <div className="absolute inset-0 z-0">
+                  <TourViewer />
                 </div>
-                <iframe
-                  src={avatar.brochureUrl}
-                  title="Brochure"
-                  className="flex-1 w-full border-0"
-                  allow="fullscreen"
+              )}
+
+              {!tourActive && (
+                <div className="absolute inset-0 flex items-center justify-center text-white/40 text-sm">
+                  Connecting to your tour&hellip;
+                </div>
+              )}
+
+              {tourActive && !avatar.brochureUrl && <TourAreaNav />}
+
+              {tourActive && avatar.brochureUrl && (
+                <div className="absolute inset-0 z-[5] bg-white flex flex-col">
+                  <div className="flex items-center justify-between px-4 py-2 bg-[#1e293b]">
+                    <span className="text-sm font-medium text-white/90">Brochure View</span>
+                    <button
+                      type="button"
+                      onClick={avatar.closeBrochure}
+                      className="rounded-md bg-white/10 px-3 py-1 text-xs font-medium text-white hover:bg-white/20 transition-colors"
+                    >
+                      Back to Tour
+                    </button>
+                  </div>
+                  <iframe
+                    src={avatar.brochureUrl}
+                    title="Brochure"
+                    className="flex-1 w-full border-0"
+                    allow="fullscreen"
+                  />
+                </div>
+              )}
+
+              {/* Floating toolbar — sits above the scene, not below it */}
+              <div className="absolute top-3 left-1/2 z-30 -translate-x-1/2">
+                <CallControls
+                  isMicMuted={avatar.isMicMuted}
+                  isCameraEnabled={camera.enabled}
+                  isAvatarSpeaking={avatar.isAvatarSpeaking}
+                  hasLocalCamera={!!camera.stream}
+                  onEnd={handleEnd}
+                  onToggleMic={avatar.toggleMic}
+                  onToggleCamera={camera.toggleCamera}
+                  onInterrupt={avatar.interrupt}
+                  transcriptOpen={transcriptOpen}
+                  onToggleTranscript={() => setTranscriptOpen((v) => !v)}
+                  isFullscreen={isFullscreen}
+                  onToggleFullscreen={toggleFullscreen}
                 />
               </div>
-            )}
-
-            {/* Avatar — always rendered in same tree position; transitions between full and PiP via CSS */}
-            <div
-              className={cn(
-                "transition-all duration-500 ease-out",
-                tourActive
-                  ? "absolute z-10 bottom-[5.5rem] left-3 sm:bottom-28 sm:left-5 w-[clamp(112px,16vw,220px)] aspect-[3/4] overflow-hidden rounded-xl border border-white/25 bg-[#3c4043] shadow-2xl"
-                  : "absolute inset-0 z-0",
-                tourActive && avatar.isAvatarSpeaking && "ring-2 ring-blue-400/60 ring-offset-2 ring-offset-black/20",
-              )}
-            >
-              <AvatarStage
-                videoElement={avatar.videoElement}
-                isConnected={avatar.isConnected}
-                isAvatarSpeaking={avatar.isAvatarSpeaking}
-                isUserSpeaking={avatar.isUserSpeaking}
-                status={avatar.status}
-                variant={tourActive ? "pip" : "full"}
-              />
             </div>
 
-            <SelfPreview
-              stream={camera.stream}
-              enabled={camera.enabled}
-              error={camera.error}
-              label={displayName || "You"}
-              className={cn(
-                tourActive &&
-                  "!top-16 !right-3 !bottom-auto sm:!top-20 sm:!right-5 !w-[clamp(100px,14vw,180px)]",
-              )}
-            />
-
-            <CallControls
-              isConnected={avatar.isConnected}
-              isStarting={isStarting}
-              isMicMuted={avatar.isMicMuted}
-              isSpeakerMuted={avatar.isSpeakerMuted}
-              isCameraEnabled={camera.enabled}
-              isAvatarSpeaking={avatar.isAvatarSpeaking}
-              avatarVolume={avatar.avatarVolume}
-              hasLocalCamera={!!camera.stream}
-              onStart={handleStart}
-              onEnd={handleEnd}
-              onToggleMic={avatar.toggleMic}
-              onToggleSpeaker={avatar.toggleSpeaker}
-              onToggleCamera={camera.toggleCamera}
-              onInterrupt={avatar.interrupt}
-              onVolumeChange={avatar.setAvatarVolume}
-              transcriptOpen={transcriptOpen}
-              onToggleTranscript={() => setTranscriptOpen((v) => !v)}
-              isFullscreen={isFullscreen}
-              onToggleFullscreen={toggleFullscreen}
+            <ParticipantPanel
+              avatar={avatar}
+              camera={camera}
+              displayName={displayName}
+              layout="strip"
+              className="lg:hidden shrink-0 max-h-[28vh]"
             />
           </div>
         </div>
 
-        {transcriptOpen && (
-          <TranscriptPanel
-            status={avatar.status}
-            messages={avatar.messages}
-            liveUserText={avatar.liveUserText}
-            liveAgentText={avatar.liveAgentText}
-            isUserSpeaking={avatar.isUserSpeaking}
-            isAvatarSpeaking={avatar.isAvatarSpeaking}
-            sessionWarning={avatar.sessionWarning}
-            onClose={() => setTranscriptOpen(false)}
-            className="hidden lg:flex max-h-[100dvh]"
-          />
-        )}
+        <ParticipantPanel
+          avatar={avatar}
+          camera={camera}
+          displayName={displayName}
+          transcriptOpen={transcriptOpen}
+          onCloseTranscript={() => setTranscriptOpen(false)}
+          layout="sidebar"
+        />
       </div>
 
       {transcriptOpen && (
-        <div className="lg:hidden sm:flex hidden flex-col max-h-[40vh] border-t border-white/10 bg-[#292a2d] animate-in slide-in-from-bottom-4 duration-300">
+        <div className="lg:hidden flex flex-col max-h-[35vh] border-t border-white/10 bg-[#292a2d] animate-in slide-in-from-bottom-4 duration-300">
           <TranscriptPanel
             status={avatar.status}
             messages={avatar.messages}
@@ -232,7 +198,7 @@ export function VideoCallRoom({
             isAvatarSpeaking={avatar.isAvatarSpeaking}
             sessionWarning={avatar.sessionWarning}
             onClose={() => setTranscriptOpen(false)}
-            className="border-l-0 w-full max-h-[40vh]"
+            className="border-l-0 w-full max-h-[35vh]"
           />
         </div>
       )}

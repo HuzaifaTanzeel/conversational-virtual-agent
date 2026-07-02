@@ -4,6 +4,7 @@ import { callJoin, getInvitePreview } from "../../lib/api";
 import { useTavus } from "../../hooks/useTavus.js";
 import { useLocalCamera } from "../../hooks/useLocalCamera.js";
 import { VideoCallRoom } from "../../components/VideoCallRoom.jsx";
+import { PreJoinLobby } from "../../components/PreJoinLobby.jsx";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -17,6 +18,7 @@ import {
   Video,
   AlertCircle,
 } from "lucide-react";
+
 function formatMeetingId(value) {
   const digits = value.replace(/\D/g, "").slice(0, 10);
   return digits.replace(/(\d{3})(?=\d)/g, "$1 ").trim();
@@ -57,54 +59,44 @@ function CallJoinGate({ onAuthed, initialMeetingId = "", initialPasscode = "", a
   }, [autoJoin, initialMeetingId, initialPasscode, submit]);
 
   return (
-    <div className="relative flex min-h-[100dvh] flex-col bg-[#202124] text-white overflow-hidden">
-      {/* Ambient background */}
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-32 -left-32 h-96 w-96 rounded-full bg-[#1a73e8]/20 blur-3xl" />
-        <div className="absolute -bottom-32 -right-32 h-96 w-96 rounded-full bg-[#8ab4f8]/10 blur-3xl" />
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRhZHRzIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgb3BhY2l0eT0iMC4wMiI+PGNpcmNsZSBjeD0iMSIgY3k9IjEiIHI9IjEiLz48L2RhZHRzPjwvc3ZnPg==')] opacity-40" />
-      </div>
-
-      {/* Header */}
-      <header className="relative z-10 flex items-center justify-between px-4 py-4 sm:px-8">
+    <div className="flex min-h-[100dvh] flex-col bg-[#f8f9fa] text-[#202124]">
+      <header className="flex items-center justify-between border-b border-[#dadce0] px-4 py-3 sm:px-8">
         <Link
           to="/"
-          className="inline-flex items-center gap-2 text-sm text-white/60 transition-colors hover:text-white"
+          className="inline-flex items-center gap-2 text-sm text-[#5f6368] transition-colors hover:text-[#202124]"
         >
           <ArrowLeft className="h-4 w-4" />
           Back to home
         </Link>
-        <div className="flex items-center gap-2 text-sm text-white/50">
-          <Shield className="h-4 w-4" />
+        <div className="flex items-center gap-2 text-xs text-[#5f6368]">
+          <Shield className="h-3.5 w-3.5" />
           Encrypted session
         </div>
       </header>
 
-      {/* Content */}
-      <main className="relative z-10 flex flex-1 items-center justify-center p-4 sm:p-8">
+      <main className="flex flex-1 items-center justify-center p-4 sm:p-8">
         <div className="grid w-full max-w-4xl gap-8 lg:grid-cols-2 lg:gap-12 items-center">
-          {/* Left — hero */}
           <div className="hidden lg:flex flex-col gap-6">
-            <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-[#1a73e8] shadow-lg shadow-blue-500/30">
-              <Video className="h-8 w-8 text-white" />
+            <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1a73e8] shadow-md">
+              <Video className="h-7 w-7 text-white" />
             </div>
             <div>
-              <h1 className="text-3xl font-bold tracking-tight leading-tight">
-                Ready to join your meeting?
+              <h1 className="text-3xl font-normal tracking-tight leading-tight text-[#202124]">
+                Join your property tour
               </h1>
-              <p className="mt-3 text-base text-white/50 leading-relaxed max-w-md">
+              <p className="mt-3 text-base text-[#5f6368] leading-relaxed max-w-md">
                 Enter the Meeting ID and Passcode from your email to connect with our AI sales agent.
               </p>
             </div>
             <ul className="space-y-3">
               {[
                 { icon: Sparkles, text: "Talk naturally with a lifelike AI avatar" },
-                { icon: Calendar, text: "Your session time starts when you join" },
+                { icon: Calendar, text: "Your session time starts when you join the call" },
                 { icon: Lock, text: "Secure, encrypted one-to-one conversation" },
               ].map(({ icon: Icon, text }) => (
-                <li key={text} className="flex items-center gap-3 text-sm text-white/60">
-                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-white/5">
-                    <Icon className="h-4 w-4 text-[#8ab4f8]" />
+                <li key={text} className="flex items-center gap-3 text-sm text-[#5f6368]">
+                  <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-[#e8f0fe]">
+                    <Icon className="h-4 w-4 text-[#1a73e8]" />
                   </span>
                   {text}
                 </li>
@@ -112,35 +104,34 @@ function CallJoinGate({ onAuthed, initialMeetingId = "", initialPasscode = "", a
             </ul>
           </div>
 
-          {/* Right — form card */}
-          <div className="rounded-2xl border border-white/10 bg-white/5 p-6 sm:p-8 backdrop-blur-xl shadow-2xl">
+          <div className="rounded-2xl border border-[#dadce0] bg-white p-6 sm:p-8 shadow-sm">
             <div className="mb-6 lg:hidden text-center">
-              <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1a73e8] shadow-lg shadow-blue-500/30">
-                <Video className="h-7 w-7 text-white" />
+              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-xl bg-[#1a73e8]">
+                <Video className="h-6 w-6 text-white" />
               </div>
-              <h1 className="text-xl font-bold">Join a Meeting</h1>
-              <p className="mt-1.5 text-sm text-white/50">
-                Enter your credentials to get started
+              <h1 className="text-xl font-medium text-[#202124]">Join a Meeting</h1>
+              <p className="mt-1.5 text-sm text-[#5f6368]">
+                Enter your credentials to continue
               </p>
             </div>
 
             <div className="mb-6 hidden lg:block">
-              <h2 className="text-lg font-semibold">Enter meeting details</h2>
-              <p className="mt-1 text-sm text-white/50">
+              <h2 className="text-lg font-medium text-[#202124]">Enter meeting details</h2>
+              <p className="mt-1 text-sm text-[#5f6368]">
                 Check your email for the Meeting ID and Passcode
               </p>
             </div>
 
             <form onSubmit={submit} className="space-y-5">
               {error && (
-                <div className="flex items-start gap-2.5 rounded-xl bg-red-500/15 border border-red-500/30 px-4 py-3 text-sm text-red-300">
+                <div className="flex items-start gap-2.5 rounded-xl bg-red-50 border border-red-200 px-4 py-3 text-sm text-red-700">
                   <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
                   <span>{error}</span>
                 </div>
               )}
 
               <div className="space-y-2">
-                <Label htmlFor="meetingId" className="text-white/70 text-sm">
+                <Label htmlFor="meetingId" className="text-[#5f6368] text-sm">
                   Meeting ID
                 </Label>
                 <Input
@@ -150,12 +141,12 @@ function CallJoinGate({ onAuthed, initialMeetingId = "", initialPasscode = "", a
                   placeholder="384 291 7405"
                   autoComplete="off"
                   required
-                  className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus-visible:ring-[#1a73e8] text-base tracking-widest font-mono"
+                  className="h-12 bg-white border-[#dadce0] text-[#202124] placeholder:text-[#80868b] focus-visible:ring-[#1a73e8] text-base tracking-widest font-mono"
                 />
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="passcode" className="text-white/70 text-sm">
+                <Label htmlFor="passcode" className="text-[#5f6368] text-sm">
                   Passcode
                 </Label>
                 <Input
@@ -165,28 +156,28 @@ function CallJoinGate({ onAuthed, initialMeetingId = "", initialPasscode = "", a
                   placeholder="ABC123"
                   autoComplete="off"
                   required
-                  className="h-12 bg-white/5 border-white/10 text-white placeholder:text-white/30 focus-visible:ring-[#1a73e8] text-base tracking-widest font-mono uppercase"
+                  className="h-12 bg-white border-[#dadce0] text-[#202124] placeholder:text-[#80868b] focus-visible:ring-[#1a73e8] text-base tracking-widest font-mono uppercase"
                 />
               </div>
 
               <Button
                 type="submit"
                 disabled={submitting}
-                className="w-full h-12 rounded-xl text-base font-semibold bg-[#1a73e8] hover:bg-[#1765cc] shadow-lg shadow-blue-500/20 transition-transform hover:scale-[1.01]"
+                className="w-full h-12 rounded-full text-base font-medium bg-[#1a73e8] hover:bg-[#1765cc]"
               >
                 {submitting ? (
                   <>
                     <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                    Joining&hellip;
+                    Verifying&hellip;
                   </>
                 ) : (
-                  "Join meeting"
+                  "Continue"
                 )}
               </Button>
 
-              <p className="text-center text-xs text-white/40 pt-1">
+              <p className="text-center text-xs text-[#80868b] pt-1">
                 Don&apos;t have a meeting?{" "}
-                <Link to="/" className="text-[#8ab4f8] hover:text-white transition-colors">
+                <Link to="/" className="text-[#1a73e8] hover:underline">
                   Book a call
                 </Link>
               </p>
@@ -199,71 +190,100 @@ function CallJoinGate({ onAuthed, initialMeetingId = "", initialPasscode = "", a
 }
 
 function CallStage({ callToken, displayName, minutesRemaining }) {
+  const [inCall, setInCall] = useState(false);
   const [isStarting, setIsStarting] = useState(false);
+  const pendingMicMuted = useRef(false);
   const avatar = useTavus(callToken);
   const camera = useLocalCamera();
 
   useEffect(() => {
     camera.start();
     return () => camera.stop();
-  }, [camera]);
-
-  const handleStart = useCallback(async () => {
-    setIsStarting(true);
-    try {
-      await avatar.start();
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setIsStarting(false);
-    }
-  }, [avatar]);
+    // Run once on mount; camera.start/stop are stable useCallbacks. Depending on
+    // the whole `camera` object would restart the stream on every render because
+    // the hook returns a fresh object literal each time.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
-    if (avatar.isConnected) {
-      setIsStarting(false);
+    if (!inCall || !avatar.isConnected || !pendingMicMuted.current) return;
+    if (!avatar.isMicMuted) {
+      avatar.toggleMic();
     }
-  }, [avatar.isConnected]);
+    pendingMicMuted.current = false;
+  }, [inCall, avatar.isConnected, avatar.isMicMuted, avatar.toggleMic]);
+
+  const handleJoin = useCallback(
+    async ({ micMuted }) => {
+      pendingMicMuted.current = micMuted;
+      setInCall(true);
+      setIsStarting(true);
+      try {
+        await avatar.start();
+      } catch (e) {
+        console.error(e);
+        setInCall(false);
+        pendingMicMuted.current = false;
+      } finally {
+        setIsStarting(false);
+      }
+    },
+    [avatar],
+  );
+
+  const handleLeave = useCallback(async () => {
+    setInCall(false);
+    pendingMicMuted.current = false;
+    await camera.start();
+  }, [camera]);
+
+  if (!inCall) {
+    return (
+      <PreJoinLobby
+        camera={camera}
+        displayName={displayName}
+        minutesRemaining={minutesRemaining}
+        isJoining={isStarting}
+        onJoin={handleJoin}
+      />
+    );
+  }
 
   return (
     <VideoCallRoom
       avatar={avatar}
       camera={camera}
-      isStarting={isStarting}
-      onStart={handleStart}
       displayName={displayName}
       minutesRemaining={minutesRemaining}
+      onLeave={handleLeave}
     />
   );
 }
 
 function LoadingScreen() {
   return (
-    <div className="flex min-h-[100dvh] flex-col items-center justify-center gap-4 bg-[#202124] text-white">
+    <div className="flex min-h-[100dvh] flex-col items-center justify-center gap-4 bg-[#f8f9fa] text-[#202124]">
       <div className="relative">
-        <div className="h-16 w-16 rounded-full border-2 border-white/10" />
+        <div className="h-16 w-16 rounded-full border-2 border-[#dadce0]" />
         <div className="absolute inset-0 h-16 w-16 animate-spin rounded-full border-2 border-transparent border-t-[#1a73e8]" />
       </div>
-      <p className="text-sm text-white/50">Loading meeting&hellip;</p>
+      <p className="text-sm text-[#5f6368]">Loading meeting&hellip;</p>
     </div>
   );
 }
 
 function ErrorScreen({ message }) {
   return (
-    <div className="relative flex min-h-[100dvh] items-center justify-center bg-[#202124] p-4 overflow-hidden">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-32 left-1/2 -translate-x-1/2 h-64 w-64 rounded-full bg-red-500/10 blur-3xl" />
-      </div>
-      <div className="relative w-full max-w-sm rounded-2xl border border-white/10 bg-white/5 p-8 text-center backdrop-blur-xl">
-        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-red-500/15">
-          <AlertCircle className="h-7 w-7 text-red-400" />
+    <div className="flex min-h-[100dvh] items-center justify-center bg-[#f8f9fa] p-4">
+      <div className="w-full max-w-sm rounded-2xl border border-[#dadce0] bg-white p-8 text-center shadow-sm">
+        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-red-50">
+          <AlertCircle className="h-7 w-7 text-red-500" />
         </div>
-        <h1 className="text-xl font-bold text-white">Unable to join</h1>
-        <p className="mt-2 text-sm text-white/50 leading-relaxed">{message}</p>
+        <h1 className="text-xl font-medium text-[#202124]">Unable to join</h1>
+        <p className="mt-2 text-sm text-[#5f6368] leading-relaxed">{message}</p>
         <Button
           asChild
-          className="mt-6 w-full h-11 rounded-xl bg-white/10 hover:bg-white/15 text-white border-0"
+          className="mt-6 w-full h-11 rounded-full bg-[#1a73e8] hover:bg-[#1765cc] text-white"
         >
           <Link to="/">Book a new call</Link>
         </Button>

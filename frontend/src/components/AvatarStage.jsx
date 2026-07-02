@@ -34,6 +34,8 @@ export function AvatarStage({
   variant = "full",
 }) {
   const isPip = variant === "pip";
+  const isTile = variant === "tile";
+  const isCompact = isPip || isTile;
   const mountRef = useRef(null);
 
   useEffect(() => {
@@ -57,7 +59,7 @@ export function AvatarStage({
   const dotClass = STATUS_DOT[status] ?? "bg-white/50";
 
   return (
-    <div className="absolute inset-0">
+    <div className={cn("relative", isTile ? "h-full w-full" : "absolute inset-0")}>
       {/* Placeholder */}
       {!videoElement && (
         <div className="absolute inset-0 z-0 flex flex-col items-center justify-center gap-4">
@@ -65,20 +67,18 @@ export function AvatarStage({
             <div
               className={cn(
                 "rounded-full bg-gradient-to-br from-[#1a73e8]/30 to-[#8ab4f8]/20 flex items-center justify-center",
-                isPip ? "h-12 w-12" : "h-24 w-24",
+                isCompact ? "h-12 w-12" : "h-24 w-24",
               )}
             >
-              <Bot className={cn("text-white/60", isPip ? "h-5 w-5" : "h-10 w-10")} />
+              <Bot className={cn("text-white/60", isCompact ? "h-5 w-5" : "h-10 w-10")} />
             </div>
-            {isConnected && (
+            {isConnected && !isTile && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <Loader2
-                  className={cn("text-white/70 animate-spin", isPip ? "h-4 w-4" : "h-8 w-8")}
-                />
+                <Loader2 className="text-white/70 animate-spin h-8 w-8" />
               </div>
             )}
           </div>
-          {!isPip && (
+          {!isCompact && (
             <p className="text-sm text-white/50 font-medium">
               {isConnected ? "Loading avatar stream\u2026" : "Ready to join"}
             </p>
@@ -89,42 +89,41 @@ export function AvatarStage({
       {/* Video mount */}
       <div ref={mountRef} className="absolute inset-0 z-[1]" />
 
-      {/* Speaking ring */}
-      {isAvatarSpeaking && (
+      {/* Speaking ring — only on the large stage variant */}
+      {isAvatarSpeaking && !isTile && (
         <div
-          className={cn(
-            "absolute inset-0 z-[2] pointer-events-none animate-speak-glow",
-            isPip ? "rounded-xl" : "rounded-2xl",
-          )}
+          className="absolute inset-0 z-[2] pointer-events-none animate-speak-glow rounded-2xl"
           aria-hidden
         />
       )}
 
-      {/* User-speaking indicator */}
-      {isUserSpeaking && (
+      {/* User-speaking indicator — only on the large stage variant */}
+      {isUserSpeaking && !isTile && (
         <div className="absolute bottom-0 left-0 right-0 z-[3] h-1 bg-gradient-to-r from-transparent via-emerald-400 to-transparent animate-slide-bar" />
       )}
 
-      {/* Participant badge — bottom left, Meet-style */}
-      <div
-        className={cn(
-          "absolute z-[4] flex items-center gap-2 pointer-events-none",
-          isPip ? "bottom-2 left-2" : "bottom-4 left-4",
-        )}
-      >
-        <span
+      {/* Participant badge — only on the large stage variant; tiles are labeled beneath the card */}
+      {!isTile && (
+        <div
           className={cn(
-            "inline-flex items-center gap-1.5 rounded-lg bg-black/60 font-medium text-white backdrop-blur-sm",
-            isPip ? "px-2 py-1 text-[10px]" : "gap-2 px-3 py-1.5 text-sm",
+            "absolute z-[4] flex items-center gap-2 pointer-events-none",
+            isPip ? "bottom-2 left-2" : "bottom-4 left-4",
           )}
         >
-          <span className={cn("rounded-full shrink-0", dotClass, isPip ? "h-1.5 w-1.5" : "h-2 w-2")} />
-          AI Agent
-          {isConnected && !isPip && (
-            <span className="text-white/60 text-xs font-normal">&middot; {statusLabel}</span>
-          )}
-        </span>
-      </div>
+          <span
+            className={cn(
+              "inline-flex items-center gap-1.5 rounded-lg bg-black/60 font-medium text-white backdrop-blur-sm",
+              isPip ? "px-2 py-1 text-[10px]" : "gap-2 px-3 py-1.5 text-sm",
+            )}
+          >
+            <span className={cn("rounded-full shrink-0", dotClass, isPip ? "h-1.5 w-1.5" : "h-2 w-2")} />
+            AI Agent
+            {isConnected && !isCompact && (
+              <span className="text-white/60 text-xs font-normal">&middot; {statusLabel}</span>
+            )}
+          </span>
+        </div>
+      )}
     </div>
   );
 }
